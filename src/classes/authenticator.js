@@ -13,8 +13,9 @@ class Authenticator {
 
   static validateUsername(username) {
     let agentRegex = /agent/;
-    let travelerRegex = /traveler[0-50]/;
-
+    let travelerRegex = /^traveler([1-9]|[1-4][0-9]|50)$/;
+    console.log(travelerRegex);
+    console.log(travelerRegex.test(username));
     return travelerRegex.test(username) || agentRegex.test(username);
   }
 
