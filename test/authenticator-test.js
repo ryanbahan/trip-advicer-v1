@@ -10,13 +10,38 @@ describe('Authenticator', function() {
   });
 
   it('should be able to authenticate a username', function() {
+    // Happy paths
     expect(Authenticator.validateUsername('agent')).to.equal(true);
     expect(Authenticator.validateUsername('traveler1')).to.equal(true);
+    // Sad paths
     expect(Authenticator.validateUsername('traveler')).to.equal(false);
+    expect(Authenticator.validateUsername('traveler100')).to.equal(false);
     expect(Authenticator.validateUsername('traveler51')).to.equal(false);
   });
 
   it('should be able to authenticate a password', function() {
+    // Happy path
+    expect(Authenticator.validatePassword('travel2020')).to.equal(true);
+
+    // Sad paths
+    expect(Authenticator.validatePassword('travel202')).to.equal(false);
+    expect(Authenticator.validatePassword('travel202008')).to.equal(false);
+    expect(Authenticator.validatePassword('duhh')).to.equal(false);
+  });
+
+  it('should be able to validate or deny a login request', function() {
+    // Happy paths
+    expect(Authenticator.validate('traveler1', 'travel2020')).to.equal(true);
+    expect(Authenticator.validate('traveler5', 'travel2020')).to.equal(true);
+    expect(Authenticator.validate('traveler50', 'travel2020')).to.equal(true);
+    expect(Authenticator.validate('agent', 'travel2020')).to.equal(true);
+
+    // Sad paths
+    expect(Authenticator.validate('traveler', 'travel2020')).to.equal(false);
+    expect(Authenticator.validate('traveler51', 'travel2020')).to.equal(false);
+    expect(Authenticator.validate('traveler500', 'travel2020')).to.equal(false);
+    expect(Authenticator.validate('agents', 'travel2020')).to.equal(false);
+
   });
 
 });
