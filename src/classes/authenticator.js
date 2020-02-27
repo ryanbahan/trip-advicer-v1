@@ -1,18 +1,26 @@
 class Authenticator {
-  constructor() {
-    this.password = 'travel2020';
-  }
+  constructor() {}
 
   static validate(username, password) {
-    this.validateUsername(username);
-    return this.validateUsername(username);
+    if (this.validateUsername(username) && this.validatePassword(password)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   static validateUsername(username) {
     let regex = /traveler[0-50]/;
-    let match = name.match(regex);
 
     return regex.test(username);
   }
+
+  static validatePassword(password) {
+    let validPassword = 'travel2020';
+    let regex = new RegExp(validPassword);
+
+    return regex.test(password);
+  }
 }
+
 export default Authenticator;
