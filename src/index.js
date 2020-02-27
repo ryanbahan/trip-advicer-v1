@@ -14,6 +14,8 @@ import Dom from './classes/dom';
 
 let dom = new Dom();
 
+dom.bindEvents();
 dom.displayLoginForm();
+
 
 // console.log(Dom);
