@@ -25,7 +25,7 @@ class Authenticator {
   }
 
   static checkAdmin(username) {
-    let agentRegex = /agent/;
+    let agentRegex = /^agent$/;
 
     if (agentRegex.test(username)) {
       return true;

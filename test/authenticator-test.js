@@ -41,7 +41,19 @@ describe('Authenticator', function() {
     expect(Authenticator.validate('traveler51', 'travel2020')).to.equal(false);
     expect(Authenticator.validate('traveler500', 'travel2020')).to.equal(false);
     expect(Authenticator.validate('agents', 'travel2020')).to.equal(false);
+  });
 
+  it('should be able to check for an admin user', function() {
+    // Is admin
+    expect(Authenticator.checkAdmin('agent')).to.equal(true);
+
+    // Is not admin
+    expect(Authenticator.checkAdmin('traveler')).to.equal(false);
+
+    // Sad paths
+    expect(Authenticator.checkAdmin('travel')).to.equal(false);
+    expect(Authenticator.checkAdmin('agent0')).to.equal(false);
+    expect(Authenticator.checkAdmin('agents')).to.equal(false);
   });
 
 });
