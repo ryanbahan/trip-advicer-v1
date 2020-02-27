@@ -1,18 +1,19 @@
+import FetchController from './fetch-controller';
+
 class Authenticator {
   constructor() {}
 
   static validate(username, password) {
     if (this.validateUsername(username) && this.validatePassword(password)) {
-      return true;
-    } else {
-      return false;
+      FetchController.getUser(username);
     }
   }
 
   static validateUsername(username) {
-    let regex = /traveler[0-50]/;
+    let travelerRegex = /agent/;
+    let agentRegex = /traveler[0-50]/;
 
-    return regex.test(username);
+    return travelerRegex.test(username) || agentRegex.test(username);
   }
 
   static validatePassword(password) {
