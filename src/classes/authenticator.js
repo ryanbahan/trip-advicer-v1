@@ -26,9 +26,12 @@ class Authenticator {
 
   static checkAdmin(username) {
     let agentRegex = /^agent$/;
+    let travelerRegex = /^traveler([1-9]|[1-4][0-9]|50)$/;
 
     if (agentRegex.test(username)) {
-      return true;
+      return 'admin';
+    } else if (travelerRegex.test(username)) {
+      return 'traveler';
     } else {
       return false;
     }

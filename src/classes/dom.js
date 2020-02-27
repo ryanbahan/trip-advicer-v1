@@ -4,12 +4,8 @@ import Authenticator from './authenticator';
 class Dom {
   constructor() {}
 
-  displayDashboard(isAdmin) {
-    if (isAdmin) {
-      console.log('admin');
-    } else {
-      console.log('traveler');
-    }
+  displayDashboard(loginCredentials) {
+    console.log(loginCredentials);
   }
 
   hideLoginForm() {
@@ -22,10 +18,13 @@ class Dom {
       let password = $('#password').val();
 
       let isValid = Authenticator.validate(username, password);
-      let isAdmin = Authenticator.checkAdmin(username);
+      let loginCredentials = Authenticator.checkAdmin(username);
 
-      if (isValid) {
-        this.displayDashboard(isAdmin);
+      console.log('isvalid', isValid);
+      console.log('logincrednetials', loginCredentials);
+
+      if (loginCredentials) {
+        this.displayDashboard(loginCredentials);
         this.hideLoginForm();
       }
     }
