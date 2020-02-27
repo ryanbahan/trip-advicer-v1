@@ -4,16 +4,23 @@ import Dashboard from './dashboard';
 import FetchController from './fetch-controller';
 
 class Dom {
-  constructor() {}
+  constructor() {
+    this.dashboard = null
+  }
 
   async displayDashboard(userRole) {
     let dashboard = new Dashboard();
+    let htmlString;
+
     if (userRole === 0) {
-      dashboard.displayAdminDashboard();
+      htmlString = dashboard.displayAdminDashboard();
     } else {
       let user = await FetchController.getUser(userRole);
-      dashboard.displayTravelerDashboard(user);
+      htmlString = dashboard.displayTravelerDashboard(user);
     }
+
+    this.dashboard = dashboard;
+    $('body').append(htmlString);
   }
 
   hideLoginForm() {

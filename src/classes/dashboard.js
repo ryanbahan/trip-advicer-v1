@@ -8,12 +8,12 @@ class Dashboard {
 
   displayTravelerDashboard(user) {
     this.currentUser = new Traveler(user);
-    console.log(this.currentUser);
+    return `<div>traveler!</div>`
   }
 
   displayAdminDashboard() {
     this.currentUser = new Agent();
-    console.log(this.currentUser);
+    return `<div>admin!</div>`
   }
 
 }
