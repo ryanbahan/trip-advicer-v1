@@ -5,13 +5,15 @@ class Authenticator {
 
   static validate(username, password) {
     if (this.validateUsername(username) && this.validatePassword(password)) {
-      FetchController.getUser(username);
+      return true;
+    } else {
+      return false;
     }
   }
 
   static validateUsername(username) {
-    let travelerRegex = /agent/;
-    let agentRegex = /traveler[0-50]/;
+    let agentRegex = /agent/;
+    let travelerRegex = /traveler[0-50]/;
 
     return travelerRegex.test(username) || agentRegex.test(username);
   }
@@ -21,6 +23,16 @@ class Authenticator {
     let regex = new RegExp(validPassword);
 
     return regex.test(password);
+  }
+
+  static checkAdmin(username) {
+    let agentRegex = /agent/;
+
+    if (agentRegex.test(username)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 

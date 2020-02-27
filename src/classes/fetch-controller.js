@@ -1,8 +1,13 @@
 class FetchController {
   constructor() {}
 
-  static getUser(username) {
-    console.log(username);
+  static getUser(id) {
+    // let response = await fetch(
+    //   `https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/travelers/travelers/${id}`
+    // );
+    // let user = await response.json();
+    //
+    // return user;
   }
 }
 

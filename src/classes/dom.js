@@ -11,7 +11,10 @@ class Dom {
       let username = $('#username').val();
       let password = $('#password').val();
 
-      Authenticator.validate(username, password);
+      let isValid = Authenticator.validate(username, password);
+      let isAdmin = Authenticator.checkAdmin(username);
+      console.log('isvalid', isValid);
+      console.log('isadmin', isAdmin);
     }
   }
 
