@@ -2,8 +2,18 @@ import $ from 'jquery';
 import Authenticator from './authenticator';
 
 class Dom {
-  constructor() {
+  constructor() {}
 
+  displayDashboard(isAdmin) {
+    if (isAdmin) {
+      console.log('admin');
+    } else {
+      console.log('traveler');
+    }
+  }
+
+  hideLoginForm() {
+    $('.form-container').remove();
   }
 
   submitLoginForm() {
@@ -13,8 +23,11 @@ class Dom {
 
       let isValid = Authenticator.validate(username, password);
       let isAdmin = Authenticator.checkAdmin(username);
-      console.log('isvalid', isValid);
-      console.log('isadmin', isAdmin);
+
+      if (isValid) {
+        this.displayDashboard(isAdmin);
+        this.hideLoginForm();
+      }
     }
   }
 
