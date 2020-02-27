@@ -29,9 +29,12 @@ class Authenticator {
     let travelerRegex = /^traveler([1-9]|[1-4][0-9]|50)$/;
 
     if (agentRegex.test(username)) {
-      return 'admin';
+      return 0;
     } else if (travelerRegex.test(username)) {
-      return 'traveler';
+      let regex = /\d+/;
+      let userID = parseInt(username.match(regex)[0]);
+
+      return userID;
     } else {
       return false;
     }

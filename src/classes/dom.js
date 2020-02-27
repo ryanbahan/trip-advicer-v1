@@ -1,11 +1,19 @@
 import $ from 'jquery';
 import Authenticator from './authenticator';
+import Dashboard from './dashboard';
+import FetchController from './fetch-controller';
 
 class Dom {
   constructor() {}
 
-  displayDashboard(loginCredentials) {
-    console.log(loginCredentials);
+  async displayDashboard(userRole) {
+    let dashboard = new Dashboard();
+    if (userRole === 0) {
+      dashboard.displayAdminDashboard();
+    } else {
+      let user = await FetchController.getUser(userRole);
+      dashboard.displayTravelerDashboard(user);
+    }
   }
 
   hideLoginForm() {
@@ -18,14 +26,11 @@ class Dom {
       let password = $('#password').val();
 
       let isValid = Authenticator.validate(username, password);
-      let loginCredentials = Authenticator.checkAdmin(username);
+      let userRole = Authenticator.checkAdmin(username);
 
-      console.log('isvalid', isValid);
-      console.log('logincrednetials', loginCredentials);
-
-      if (loginCredentials) {
-        this.displayDashboard(loginCredentials);
+      if (isValid) {
         this.hideLoginForm();
+        this.displayDashboard(userRole);
       }
     }
   }

@@ -45,12 +45,12 @@ describe('Authenticator', function() {
 
   it('should be able to check for an admin user', function() {
     // Is admin
-    expect(Authenticator.checkAdmin('agent')).to.equal('admin');
+    expect(Authenticator.checkAdmin('agent')).to.equal(0);
 
     // Is not admin
-    expect(Authenticator.checkAdmin('traveler1')).to.equal('traveler');
-    expect(Authenticator.checkAdmin('traveler50')).to.equal('traveler');
-    expect(Authenticator.checkAdmin('traveler15')).to.equal('traveler');
+    expect(Authenticator.checkAdmin('traveler1')).to.equal(1);
+    expect(Authenticator.checkAdmin('traveler50')).to.equal(50);
+    expect(Authenticator.checkAdmin('traveler15')).to.equal(15);
 
     // Sad paths
     expect(Authenticator.checkAdmin('travel')).to.equal(false);
