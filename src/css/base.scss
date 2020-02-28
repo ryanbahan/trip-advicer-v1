@@ -1,7 +1,72 @@
+body {
+  padding: 0 2.5%;
+}
+
+main {
+  display: grid;
+  grid-gap: 30px;
+  grid-auto-columns: min-content;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+}
+
+button {
+  border: solid 0.5px black;
+  border-radius: 5px;
+  padding: 2.5px 5px;
+}
+
 .form-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
+}
+
+.trip-card img,
+.book-trip-card img {
+  width: 100%;
+}
+
+.trip-card {
+  width: 100%;
+  cursor: pointer;
+  border: solid 0.5px black;
+  border-radius: 2.5%;
+}
+
+.trip-card h3 {
+  padding-left: 5%;
+}
+
+.book-trip-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border: solid 0.5px black;
+  border-radius: 2.5%;
+}
+
+.user-options {
+}
+
+.options-top {
+  display: flex;
+  align-items: baseline;
+}
+
+.options-buttons {
+  display: flex;
+  margin-bottom: 2.5%;
+}
+
+.options-buttons > * {
+  margin: 0 5px;
+}
+
+.total-spent {
+  padding-left: 5%;
 }
