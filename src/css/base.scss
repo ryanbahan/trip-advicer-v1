@@ -2,6 +2,10 @@ body {
   padding: 0 2.5%;
 }
 
+nav {
+  // background-color: grey;
+}
+
 main {
   display: grid;
   grid-gap: 30px;
@@ -26,9 +30,13 @@ button {
 .trip-card img,
 .book-trip-card img {
   width: 100%;
+  border-radius: 2.5%;
 }
 
 .trip-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   cursor: pointer;
   border: solid 0.5px black;
@@ -37,6 +45,10 @@ button {
 
 .trip-card h3 {
   padding-left: 5%;
+}
+
+.trip-card > * {
+  pointer-events: none;
 }
 
 .book-trip-card {
@@ -64,9 +76,15 @@ button {
 }
 
 .options-buttons > * {
-  margin: 0 5px;
+  margin: 5px;
 }
 
 .total-spent {
   padding-left: 5%;
+}
+
+hr {
+  width: 30%;
+  margin-left: 0;
+  text-align: left;
 }

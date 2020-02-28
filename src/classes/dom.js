@@ -16,7 +16,7 @@ class Dom {
       htmlString = dashboard.displayAdminDashboard();
     } else {
       let user = await FetchController.getUser(userRole);
-      htmlString = dashboard.displayTravelerDashboard(user);
+      htmlString = await dashboard.displayTravelerDashboard(user);
     }
 
     this.dashboard = dashboard;
@@ -46,6 +46,22 @@ class Dom {
     $('body').on('submit', () => {
       this.submitLoginForm();
     })
+    $('body').on('click', () => {
+      this.displayTripCard();
+      this.displayBookTripCard();
+    })
+  }
+
+  displayTripCard() {
+    if ($(event.target).hasClass("trip-card")) {
+      console.log('trip card');
+    }
+  }
+
+  displayBookTripCard() {
+    if ($(event.target).hasClass("book-trip-card")) {
+      console.log('book trip');
+    }
   }
 
   displayLoginForm() {
