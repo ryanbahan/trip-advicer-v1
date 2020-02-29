@@ -58,6 +58,7 @@ const fetchDashboardData = async () => {
 $('body').on('click', () => {
   dom.displayTripCard();
   dom.displayBookTripCard();
+  dom.filterTravelerCards();
 })
 
 fetchDashboardData();

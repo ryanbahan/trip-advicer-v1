@@ -7,7 +7,11 @@ class Dom {
   async displayTravelerDashboard(user, date) {
     let topHTML = `<nav><h1>TripAdvicer</h1></nav><div class="user-options">
     <div class=options-top><h2>Your Trips</h2><p class="total-spent">Total Expenses: $XX</p></div><hr>
-    <div class="options-buttons"><button>Pending</button><button>Approved</button><button>Past</button></div>
+    <div class="options-buttons">
+    <button class="traveler-all-trips traveler-filter-button">All</button>
+    <button class="traveler-pending-trips traveler-filter-button">Pending</button>
+    <button class="traveler-approved-trips traveler-filter-button">Approved</button>
+    <button class="traveler-past-trips traveler-filter-button">Past</button></div>
     </div>
     <main id="grid-content">
     <section class="book-trip-card">
@@ -40,7 +44,7 @@ class Dom {
           <p>${tripStart} - ${tripEnd}</p>
           </div>
           </section>`;
-          
+
       return html;
     })
   }
@@ -110,6 +114,12 @@ class Dom {
             </p>
           </div>
         </div>`)
+  }
+
+  filterTravelerCards() {
+    if ($(event.target).hasClass('traveler-filter-button')) {
+      console.log('yup');
+    }
   }
 }
 

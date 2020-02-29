@@ -11,6 +11,7 @@ main {
   grid-gap: 30px;
   grid-auto-columns: min-content;
   grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  grid-auto-rows: min-content;
 }
 
 button {
@@ -29,6 +30,7 @@ button {
 
 .trip-card img,
 .book-trip-card img {
+  height: 60%;
   width: 100%;
   border-radius: 2.5%;
 }
@@ -52,8 +54,9 @@ button {
 }
 
 .card-bottom {
-  border: solid 1px black;
+  // border: solid 1px black;
   width: 100%;
+  height: 100%;
 }
 
 .book-trip-card {
@@ -82,6 +85,11 @@ button {
 
 .options-buttons > * {
   margin: 5px;
+}
+
+.options-buttons button {
+  background-color: #fff;
+  cursor: pointer;
 }
 
 .total-spent {
