@@ -14,8 +14,6 @@ let destinations;
 let user;
 let allUsers;
 
-dom.displayLoginForm();
-
 $('body').on('submit', () => {
   let credentials = dom.submitLoginForm();
 
@@ -24,7 +22,6 @@ $('body').on('submit', () => {
 
   if (isValid) {
     dom.hideLoginForm();
-    fetchDashboardData();
     displayDashboard(userRole);
   }
 })
@@ -40,6 +37,7 @@ const displayDashboard = async (userRole) => {
     let fetchedUser = await FetchController.getUser(userRole);
 
     user = new Traveler(fetchedUser);
+    user.trips = trips.filter(trip => trip.userID === user.id);
     htmlString = await dom.displayTravelerDashboard(user);
   }
 
@@ -58,7 +56,12 @@ const fetchDashboardData = async () => {
 $('body').on('click', () => {
   dom.displayTripCard();
   dom.displayBookTripCard();
+  //
+  // console.log(user);
   // console.log(allUsers);
-  // console.log(trips);
+  console.log(trips);
   // console.log(destinations);
 })
+
+fetchDashboardData();
+dom.displayLoginForm();
