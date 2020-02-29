@@ -4,7 +4,7 @@ let moment = require('moment');
 class Dom {
   constructor() {}
 
-  async displayTravelerDashboard(user) {
+  async displayTravelerDashboard(user, date) {
     let topHTML = `<nav><h1>TripAdvicer</h1></nav><div class="user-options">
     <div class=options-top><h2>Your Trips</h2><p class="total-spent">Total Expenses: $XX</p></div><hr>
     <div class="options-buttons"><button>Pending</button><button>Approved</button><button>Past</button></div>
@@ -14,7 +14,7 @@ class Dom {
     <h3>Book a new trip!</h3>
     </section>`
 
-    let cards = this.createTripCards(user.trips).join('');
+    let cards = this.createTripCards(user.trips, date).join('');
 
     let bottomHTML = `</main>`;
 
@@ -25,12 +25,13 @@ class Dom {
     return `<div>admin!</div>`
   }
 
-  createTripCards(trips) {
+  createTripCards(trips, currentDate) {
     return trips.map(trip => {
       let tripStart = moment().format(trip.date);
       let tripEnd = moment(trip.date, 'YYYY/MM/DD').add(10, 'days').format('YYYY/MM/DD');
+      let tripDateStatus = this.getDateStatus(tripStart, tripEnd, currentDate);
 
-      let html = `<section class="trip-card" id="${trip.id}">
+      let html = `<section class="trip-card" id="${trip.id}" data-date-status="${tripDateStatus}">
           <img src="${trip.destination.image}" alt="${trip.destination.alt}">
           <div class="card-bottom">
           <h3>${trip.destination.destination}</h3>
@@ -39,8 +40,19 @@ class Dom {
           <p>${tripStart} - ${tripEnd}</p>
           </div>
           </section>`;
+          
       return html;
     })
+  }
+
+  getDateStatus(tripStart, tripEnd, currentDate) {
+    if (moment(tripEnd, 'YYYY/MM/DD').isBefore(currentDate, 'YYYY/MM/DD')) {
+      return 'past';
+    } else if (moment(tripStart, 'YYYY/MM/DD').isAfter(currentDate, 'YYYY/MM/DD')) {
+      return 'upcoming';
+    } else {
+      return 'current';
+    }
   }
 
   hideLoginForm() {

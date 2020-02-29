@@ -14,9 +14,7 @@ let trips;
 let destinations;
 let user;
 let allUsers;
-let currentDay = moment().format('YYYY/MM/DD');
-
-console.log(currentDay);
+let currentDate = moment().format('YYYY/MM/DD');
 
 $('body').on('submit', () => {
   let credentials = dom.submitLoginForm();
@@ -42,7 +40,7 @@ const displayDashboard = async (userRole) => {
 
     user = new Traveler(fetchedUser);
     user.trips = trips.filter(trip => trip.userID === user.id);
-    htmlString = await dom.displayTravelerDashboard(user);
+    htmlString = await dom.displayTravelerDashboard(user, currentDate);
   }
 
   $('body').append(htmlString);
@@ -60,8 +58,6 @@ const fetchDashboardData = async () => {
 $('body').on('click', () => {
   dom.displayTripCard();
   dom.displayBookTripCard();
-
-  console.log(trips);
 })
 
 fetchDashboardData();
