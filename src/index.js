@@ -6,6 +6,7 @@ import Authenticator from './classes/authenticator';
 import Dom from './classes/dom';
 import FetchController from './classes/fetch-controller';
 import Traveler from './classes/traveler';
+import Trip from './classes/trip';
 
 let dom = new Dom();
 let trips;
@@ -23,8 +24,8 @@ $('body').on('submit', () => {
 
   if (isValid) {
     dom.hideLoginForm();
-    displayDashboard(userRole);
     fetchDashboardData();
+    displayDashboard(userRole);
   }
 })
 
@@ -46,15 +47,18 @@ const displayDashboard = async (userRole) => {
 }
 
 const fetchDashboardData = async () => {
-  trips = await FetchController.getTrips();
-  destinations = await FetchController.getDestinations();
+  let tripData = await FetchController.getTrips();
+  let destinationData = await FetchController.getDestinations();
+
+  trips = tripData.map(trip => new Trip(trip, destinationData));
+  destinations = destinationData;
 };
 
 
 $('body').on('click', () => {
   dom.displayTripCard();
   dom.displayBookTripCard();
-  console.log(allUsers);
-  console.log(trips);
-  console.log(destinations);
+  // console.log(allUsers);
+  // console.log(trips);
+  // console.log(destinations);
 })
