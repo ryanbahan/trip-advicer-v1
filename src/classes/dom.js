@@ -1,5 +1,4 @@
 import $ from 'jquery';
-
 let moment = require('moment');
 
 class Dom {
@@ -28,9 +27,17 @@ class Dom {
 
   createTripCards(trips) {
     return trips.map(trip => {
+      let tripStart = moment().format(trip.date);
+      let tripEnd = moment(trip.date, 'YYYY/MM/DD').add(10, 'days').format('YYYY/MM/DD');
+
       let html = `<section class="trip-card" id="${trip.id}">
           <img src="${trip.destination.image}" alt="${trip.destination.alt}">
+          <div class="card-bottom">
           <h3>${trip.destination.destination}</h3>
+          <p>Trip Cost: $${trip.getTripCost()} / person</p>
+          <p>${trip.status.charAt(0).toUpperCase() + trip.status.slice(1)}</p>
+          <p>${tripStart} - ${tripEnd}</p>
+          </div>
           </section>`;
       return html;
     })

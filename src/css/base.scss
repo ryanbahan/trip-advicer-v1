@@ -51,6 +51,11 @@ button {
   pointer-events: none;
 }
 
+.card-bottom {
+  border: solid 1px black;
+  width: 100%;
+}
+
 .book-trip-card {
   display: flex;
   justify-content: center;

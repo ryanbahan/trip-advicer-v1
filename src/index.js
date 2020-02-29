@@ -9,10 +9,14 @@ import Traveler from './classes/traveler';
 import Trip from './classes/trip';
 
 let dom = new Dom();
+let moment = require('moment');
 let trips;
 let destinations;
 let user;
 let allUsers;
+let currentDay = moment().format('YYYY/MM/DD');
+
+console.log(currentDay);
 
 $('body').on('submit', () => {
   let credentials = dom.submitLoginForm();
@@ -56,11 +60,8 @@ const fetchDashboardData = async () => {
 $('body').on('click', () => {
   dom.displayTripCard();
   dom.displayBookTripCard();
-  //
-  // console.log(user);
-  // console.log(allUsers);
+
   console.log(trips);
-  // console.log(destinations);
 })
 
 fetchDashboardData();
