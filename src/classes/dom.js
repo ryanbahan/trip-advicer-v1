@@ -1,30 +1,39 @@
 import $ from 'jquery';
-import Authenticator from './authenticator';
-import Dashboard from './dashboard';
-import FetchController from './fetch-controller';
 
-var moment = require('moment');
-
-console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
+let moment = require('moment');
 
 class Dom {
-  constructor() {
-    this.dashboard = null
+  constructor() {}
+
+  async displayTravelerDashboard(user) {
+    let topHTML = `<nav><h1>TripAdvicer</h1></nav><div class="user-options">
+    <div class=options-top><h2>Your Trips</h2><p class="total-spent">Total Expenses: $XX</p></div><hr>
+    <div class="options-buttons"><button>Pending</button><button>Approved</button><button>Past</button></div>
+    </div>
+    <main id="grid-content">
+    <section class="book-trip-card">
+    <h3>Book a new trip!</h3>
+    </section>`
+
+    let cards = this.createTripCards(user.trips).join('');
+
+    let bottomHTML = `</main>`;
+
+    return `${topHTML}${cards}${bottomHTML}`;
   }
 
-  async displayDashboard(userRole) {
-    let dashboard = new Dashboard();
-    let htmlString;
+  displayAdminDashboard() {
+    return `<div>admin!</div>`
+  }
 
-    if (userRole === 0) {
-      htmlString = dashboard.displayAdminDashboard();
-    } else {
-      let user = await FetchController.getUser(userRole);
-      htmlString = await dashboard.displayTravelerDashboard(user);
-    }
-
-    this.dashboard = dashboard;
-    $('body').append(htmlString);
+  createTripCards(trips) {
+    return trips.map(trip => {
+      let html = `<section class="trip-card" id="${trip.id}">
+          <img src="${trip.destination.image}" alt="${trip.destination.alt}">
+          <h3>${trip.destination.destination}</h3>
+          </section>`;
+      return html;
+    })
   }
 
   hideLoginForm() {
@@ -36,24 +45,8 @@ class Dom {
       let username = $('#username').val();
       let password = $('#password').val();
 
-      let isValid = Authenticator.validate(username, password);
-      let userRole = Authenticator.checkAdmin(username);
-
-      if (isValid) {
-        this.hideLoginForm();
-        this.displayDashboard(userRole);
-      }
+      return {username: username, password: password};
     }
-  }
-
-  bindEvents() {
-    $('body').on('submit', () => {
-      this.submitLoginForm();
-    })
-    $('body').on('click', () => {
-      this.displayTripCard();
-      this.displayBookTripCard();
-    })
   }
 
   displayTripCard() {
