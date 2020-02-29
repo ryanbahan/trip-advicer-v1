@@ -3,9 +3,7 @@ import Authenticator from './authenticator';
 import Dashboard from './dashboard';
 import FetchController from './fetch-controller';
 
-var moment = require('moment');
-
-console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
+let moment = require('moment');
 
 class Dom {
   constructor() {
@@ -40,20 +38,9 @@ class Dom {
       let userRole = Authenticator.checkAdmin(username);
 
       if (isValid) {
-        this.hideLoginForm();
-        this.displayDashboard(userRole);
+        return userRole;
       }
     }
-  }
-
-  bindEvents() {
-    $('body').on('submit', () => {
-      this.submitLoginForm();
-    })
-    $('body').on('click', () => {
-      this.displayTripCard();
-      this.displayBookTripCard();
-    })
   }
 
   displayTripCard() {
