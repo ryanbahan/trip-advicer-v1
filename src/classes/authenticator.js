@@ -1,5 +1,3 @@
-import FetchController from './fetch-controller';
-
 class Authenticator {
   constructor() {}
 

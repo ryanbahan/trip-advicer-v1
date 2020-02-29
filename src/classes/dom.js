@@ -3,6 +3,10 @@ import Authenticator from './authenticator';
 import Dashboard from './dashboard';
 import FetchController from './fetch-controller';
 
+var moment = require('moment');
+
+console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
+
 class Dom {
   constructor() {
     this.dashboard = null
