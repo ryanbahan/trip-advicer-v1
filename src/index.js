@@ -11,6 +11,7 @@ let dom = new Dom();
 let trips;
 let destinations;
 let user;
+let allUsers;
 
 dom.displayLoginForm();
 
@@ -31,6 +32,7 @@ const displayDashboard = async (userRole) => {
   let htmlString;
 
   if (userRole === 0) {
+    allUsers = await FetchController.getAllUsers();
     user = new Agent();
     htmlString = dom.displayAdminDashboard();
   } else {
@@ -52,6 +54,7 @@ const fetchDashboardData = async () => {
 $('body').on('click', () => {
   dom.displayTripCard();
   dom.displayBookTripCard();
+  console.log(allUsers);
   console.log(trips);
   console.log(destinations);
 })

@@ -10,6 +10,15 @@ class FetchController {
     return user;
   }
 
+  static async getAllUsers() {
+    let response = await fetch(
+      `https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/travelers/travelers`);
+
+    let users = await response.json();
+
+    return users.travelers;
+  }
+
   static async getTrips() {
     let response = await fetch(
       `https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/trips`);
