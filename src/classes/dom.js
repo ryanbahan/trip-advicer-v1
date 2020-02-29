@@ -34,12 +34,7 @@ class Dom {
       let username = $('#username').val();
       let password = $('#password').val();
 
-      let isValid = Authenticator.validate(username, password);
-      let userRole = Authenticator.checkAdmin(username);
-
-      if (isValid) {
-        return userRole;
-      }
+      return {username: username, password: password};
     }
   }
 
