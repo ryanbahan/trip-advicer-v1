@@ -1,5 +1,3 @@
-import FetchController from './fetch-controller'
-
 class Trip {
   constructor(trip, destinations) {
     this.id = trip.id,
