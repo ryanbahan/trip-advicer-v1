@@ -67,7 +67,10 @@ $('body').on('submit', () => {
 
 // User view
 $('body').on('click', () => {
-    console.log(datepickerStart);
+
+  if ($(event.target).hasClass('book-form-submit')) {
+    event.preventDefault();
+  }
 
   if ($(event.target).hasClass('trip-card') &&
       $(event.target).hasClass('traveler')) {
