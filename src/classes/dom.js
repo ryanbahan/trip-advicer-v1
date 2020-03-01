@@ -246,7 +246,7 @@ class Dom {
     <h3>Make your next trip unforgettable.</h3>
     <form>
     <label for="destination">Destination</label>
-    <input type="text" id="destination">
+    <input type="text" class="destination-input" id="destination">
     <div class="form-row">
     <div class="date-container">
     <label for="date-start">Depart</label>
@@ -267,6 +267,40 @@ class Dom {
 
   closeModal() {
     $('body').find('.modal-opacity').remove();
+  }
+
+  displayFormDestinations(destinations) {
+
+  let query = $('.destination-input').val();
+
+  let matches = destinations.filter(destination => {
+  const regex = new RegExp(`^${query}`, 'gi');
+  return destination.destination.match(regex);
+  })
+
+//   outputHtml(matches);
+//
+//
+//
+// // Output results
+//
+// const placesOutput = document.getElementById('places-output')
+// 
+// const outputHtml = matches => {
+//   if(matches.length > 0) {
+//     const html = matches.map(match => `
+//       <option value="${match.name} (${match.abbr})">
+//       `).join('')
+//         //console.log(html)
+//         placesOutput.innerHTML = html;
+//   }
+// }
+
+
+
+
+
+
   }
 }
 

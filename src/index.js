@@ -24,7 +24,8 @@ const displayDashboard = async (userRole) => {
 
   if (userRole === 0) {
     allUsers = await FetchController.getAllUsers();
-    user = new Agent();
+    user = new Agent(trips);
+    console.log(user);
     userCredentials = 'admin';
     htmlString = dom.displayAdminDashboard(allUsers, trips, currentDate);
   } else {
@@ -137,6 +138,14 @@ $('body').on('click', () => {
 
   if ($(event.target).hasClass('modal-close')) {
     dom.closeModal();
+  }
+
+})
+
+$('body').on('input', () => {
+
+  if ($(event.target).hasClass('destination-input')) {
+    dom.displayFormDestinations(destinations);
   }
 
 })
