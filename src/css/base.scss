@@ -1,3 +1,5 @@
+@import '~js-datepicker/src/datepicker';
+
 html {
   position: relative;
   margin: 0;
@@ -190,6 +192,70 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.book-trip-modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 5%;
+  width: 30%;
+  min-width: 450px;
+  border: solid 0.25px hsla(0,0%,0%, 0.15);
+  box-shadow: 2.5px 2.5px 5px hsla(0,0%,0%, 0.15);
+  background-color: #fff;
+  border-radius: 5px;
+  height: 70vh;
+  min-height: 450px;
+  overflow: visible;
+}
+
+.form-close-container {
+  position: absolute;
+  top: 0;
+  right: 5%;
+}
+
+.book-trip-modal h3 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+  font-size: 18px;
+}
+
+form input {
+  font-size: 18px;
+}
+
+form label {
+  padding: 5% 0 1% 0;
+}
+
+.book-form-submit {
+  font-size: 20px;
+  margin-top: 5%;
+  height: 7.5vh;
+  min-height: 50px;
+  cursor: pointer;
+}
+
+.form-row {
+  padding: 5% 0 1% 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.date-container {
+  width: 47.5%;
+}
+
+.date-container input {
+  width: 100%;
 }
 
 .trip-modal {
