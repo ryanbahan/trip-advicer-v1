@@ -72,19 +72,27 @@ $('body').on('click', () => {
 $('body').on('click', () => {
 
   if ($(event.target).hasClass('revenue-admin-filter-li')) {
-    dom.displayRevenueView();
+    dom.clearTripCards();
+    let htmlString = dom.displayRevenueView();
+    $('.grid-container').append(htmlString);
   }
 
   if ($(event.target).hasClass('pending-admin-filter-li')) {
-    dom.displayPendingView();
+    dom.clearTripCards();
+    let htmlString = dom.displayPendingView(trips, currentDate);
+    $('.grid-container').append(htmlString);
   }
 
   if ($(event.target).hasClass('upcoming-admin-filter-li')) {
-    dom.displayUpcomingView();
+    dom.clearTripCards();
+    let htmlString = dom.displayUpcomingView(trips, currentDate);
+    $('.grid-container').append(htmlString);
   }
 
   if ($(event.target).hasClass('past-admin-filter-li')) {
-    dom.displayPastView();
+    dom.clearTripCards();
+    let htmlString = dom.displayPastView(trips, currentDate);
+    $('.grid-container').append(htmlString);
   }
 
 })

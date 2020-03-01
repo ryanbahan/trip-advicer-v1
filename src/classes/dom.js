@@ -13,14 +13,15 @@ class Dom {
     <button class="upcoming traveler-filter-button">Upcoming</button>
     <button class="past traveler-filter-button">Past</button></div>
     </div>
-    <main id="grid-content">
+    <main>
+    <div class="grid-container">
     <section class="book-trip-card">
     <h3>Book a new trip!</h3>
     </section>`
 
     let cards = this.createTripCards(user.trips, date).join('');
 
-    let bottomHTML = `</main>`;
+    let bottomHTML = `</div></main>`;
 
     return `${topHTML}${cards}${bottomHTML}`;
   }
@@ -37,15 +38,20 @@ class Dom {
     <li class="past-admin-filter-li">Past Trips</li>
     </ul>
     </aside>
-    <main>`
+    <main>
+    <div class="grid-container">`
 
     trips = trips.filter(trip => trip.destination !== undefined);
 
     let middleHTML = this.displayPendingView(trips, date).join('');
 
-    let bottomHTML = `</main></div>`;
+    let bottomHTML = `</div></main></div>`;
 
     return `${topHTML}${middleHTML}${bottomHTML}`;
+  }
+
+  clearTripCards() {
+    $('.grid-container').empty();
   }
 
   displayRevenueView() {
@@ -53,14 +59,14 @@ class Dom {
   }
 
   displayPendingView(trips, date) {
-    return this.createTripCards(trips, date);
+    return this.createTripCards(trips, date).filter(card => card.includes('data-approval-status="pending"'));
   }
 
-  displayUpcomingView() {
-    console.log('upcoming');
+  displayUpcomingView(trips, date) {
+    return this.createTripCards(trips, date).filter(card => card.includes('data-date-status="upcoming"'));
   }
 
-  displayPastView() {
+  displayPastView(trips, date) {
     console.log('past');
   }
 
