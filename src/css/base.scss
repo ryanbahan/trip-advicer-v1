@@ -54,15 +54,40 @@ button {
   border-radius: 2.5%;
 }
 
-.trip-card h3 {
-  padding-left: 5%;
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 5%;
+}
+
+.trip-title {
+  max-width: 50%;
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+}
+
+.trip-status {
+  font-style: italic;
 }
 
 .trip-card > * {
   pointer-events: none;
 }
 
+.trip-duration,
+.trip-cost {
+  font-size: 14px;
+}
+
 .card-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
 }
