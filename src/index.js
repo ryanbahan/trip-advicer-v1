@@ -120,6 +120,7 @@ $('body').on('click', () => {
 
 //Shared admin/user functionality
 $('body').on('click', () => {
+  console.log(user);
 
   if ($(event.target).hasClass('modal-close')) {
     dom.closeModal();
