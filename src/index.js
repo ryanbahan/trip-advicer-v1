@@ -60,6 +60,12 @@ $('body').on('submit', () => {
 // User view
 $('body').on('click', () => {
 
+  if ($(event.target).hasClass('trip-card') &&
+      $(event.target).hasClass('traveler')) {
+        let trip = trips.find(trip => trip.id === parseInt(event.target.id))
+        dom.displayTripCard(trip);
+  }
+
   if ($(event.target).hasClass('book-trip-card')) {
     dom.displayBookTripCard();
   }
@@ -73,6 +79,12 @@ $('body').on('click', () => {
 //Admin view
 
 $('body').on('click', () => {
+
+  if ($(event.target).hasClass('trip-card') &&
+      $(event.target).hasClass('admin')) {
+        let trip = trips.find(trip => trip.id === parseInt(event.target.id))
+        dom.displayAdminTripCard(trip);
+  }
 
   if ($(event.target).hasClass('revenue-admin-filter-li')) {
     dom.clearTripCards();
@@ -108,11 +120,6 @@ $('body').on('click', () => {
 
 //Shared admin/user functionality
 $('body').on('click', () => {
-
-  if ($(event.target).hasClass('trip-card')) {
-    let trip = trips.find(trip => trip.id === parseInt(event.target.id))
-    dom.displayTripCard(trip);
-  }
 
   if ($(event.target).hasClass('modal-close')) {
     dom.closeModal();

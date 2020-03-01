@@ -168,7 +168,41 @@ class Dom {
   }
 
   displayTripCard(trip) {
-    console.log(trip);
+    console.log('traveler');
+    let individualCost = trip.getIndividualCost(trip.travelers);
+    let durationNumber = trip.duration;
+    let travelers = trip.travelers;
+    let title = $(event.target).find('.trip-title').html();
+    let status = $(event.target).find('.trip-status').html();
+    let totalCost = $(event.target).find('.trip-cost').html();
+    let commission = (parseInt(trip.getTripCost(trip.travelers)) * 0.1).toFixed();
+    let duration = $(event.target).find('.trip-duration').html();
+    let card = $(event.target).children();
+    let image = $(event.target).find('img').attr('src');
+    let imageAlt = $(event.target).find('img').attr('alt');
+
+    $('body').append(`<div class="modal-opacity">
+    <section class="trip-modal">
+    <img src ="${image}" alt = "${imageAlt}" class="modal-image">
+    <div class="modal-bottom">
+    <h3 class="modal-title">${title}</h3>
+    <p class="trip-status">Status: ${status}</p>
+    <p class="modal-trip-cost">Commission: $${commission}</p>
+    <p class="modal-trip-cost">Total cost: ${totalCost}</p>
+    <p class="modal-trip-cost">Cost per person: $${individualCost}</p>
+    <p class="modal-trip-duration">Duration: ${durationNumber} days</p>
+    <p class="modal-trip-duration">Dates: ${duration}</p>
+    <p class="modal-trip-duration">Party size: ${travelers}</p>
+    </div>
+    <div class="close-container">
+    <p class="modal-close">Close</p>
+    </div>
+    </section>
+    </div>`)
+  }
+
+  displayAdminTripCard(trip) {
+    console.log('admin');
     let individualCost = trip.getIndividualCost(trip.travelers);
     let durationNumber = trip.duration;
     let travelers = trip.travelers;
