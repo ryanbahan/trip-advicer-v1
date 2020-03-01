@@ -246,7 +246,60 @@ class Dom {
     <h3>Make your next trip unforgettable.</h3>
     <form>
     <label for="destination">Destination</label>
-    <input type="text" class="destination-input" id="destination">
+    <input type="text" class="destination-input" id="destination" list="places-output">
+    <datalist id="places-output">
+    <option value="Lima, Peru">
+    </option><option value="Stockholm, Sweden">
+    </option><option value="Sydney, Austrailia">
+    </option><option value="Cartagena, Colombia">
+    </option><option value="Madrid, Spain">
+    </option><option value="Jakarta, Indonesia">
+    </option><option value="Paris, France">
+    </option><option value="Tokyo, Japan">
+    </option><option value="Amsterdam, Netherlands">
+    </option><option value="Toronto, Canada">
+    </option><option value="Mikonos, Greece">
+    </option><option value="Wellington, New Zealand">
+    </option><option value="St. Petersburg, Russia">
+    </option><option value="Marrakesh, Morocco">
+    </option><option value="Manila, Philippines">
+    </option><option value="Bangkok, Thailand">
+    </option><option value="Jaipur, India">
+    </option><option value="Cape Town, South Africa">
+    </option><option value="Quito, Ecuador">
+    </option><option value="Miami, Florida">
+    </option><option value="Tulum, Mexico">
+    </option><option value="Rome, Italy">
+    </option><option value="Copenhagen, Denmark">
+    </option><option value="Vilnius, Lithuania">
+    </option><option value="New York, New York">
+    </option><option value="London, England">
+    </option><option value="San Francisco, California">
+    </option><option value="San Juan, Puerto Rico">
+    </option><option value="Willemstad, Curaçao">
+    </option><option value="Antananarivo, Madagascar">
+    </option><option value="Colombo, Sri Lanka">
+    </option><option value="Kathmandu, Nepal">
+    </option><option value="Brussels, Belgium">
+    </option><option value="Seoul, South Korea">
+    </option><option value="Anchorage, Alaska">
+    </option><option value="Reykjavík, Iceland">
+    </option><option value="Frankfurt, Germany">
+    </option><option value="Helsinki, Finland">
+    </option><option value="Porto, Portugal">
+    </option><option value="La Isla Tortuga, Costa Rica">
+    </option><option value="Montego Bay, Jamaica">
+    </option><option value="Santo Domingo, Dominican Republic">
+    </option><option value="Nassau, The Bahamas">
+    </option><option value="Caye Caulker, Belize">
+    </option><option value="Calgary, Canada">
+    </option><option value="Hobart, Tasmania">
+    </option><option value="Victoria, Seychelles">
+    </option><option value="Zürich, Switzerland">
+    </option><option value="Dar es Salaam, Tanzania">
+    </option><option value="Castries, St Lucia">
+    </option></datalist>
+    </datalist>
     <div class="form-row">
     <div class="date-container">
     <label for="date-start">Depart</label>
@@ -272,34 +325,23 @@ class Dom {
   displayFormDestinations(destinations) {
 
   let query = $('.destination-input').val();
+  const placesOutput = $('#places-output');
 
   let matches = destinations.filter(destination => {
   const regex = new RegExp(`^${query}`, 'gi');
   return destination.destination.match(regex);
-  })
+  });
 
-//   outputHtml(matches);
-//
-//
-//
-// // Output results
-//
-// const placesOutput = document.getElementById('places-output')
-// 
-// const outputHtml = matches => {
-//   if(matches.length > 0) {
-//     const html = matches.map(match => `
-//       <option value="${match.name} (${match.abbr})">
-//       `).join('')
-//         //console.log(html)
-//         placesOutput.innerHTML = html;
-//   }
-// }
+  const outputHtml = matches => {
+      const html = matches.map(match => `
+        <option value="${match.destination}">
+        `).join('');
 
+        placesOutput.empty();
+        placesOutput.append(html);
+  }
 
-
-
-
+  outputHtml(matches);
 
   }
 }
