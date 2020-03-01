@@ -16,11 +16,17 @@ class Trip {
   getTripCost(people = 1) {
     let sum = this.destination.estimatedLodgingCostPerDay *
               this.duration +
-              this.destination.estimatedFlightCostPerPerson;
+              this.destination.estimatedFlightCostPerPerson *
+              people;
 
     let total = (sum * 0.1) + sum;
 
     return `${total.toFixed()}`;
+  }
+
+  getIndividualCost(people) {
+    let tripCost = this.getTripCost(people);
+    return (tripCost / people).toFixed();
   }
 
 }

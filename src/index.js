@@ -107,7 +107,8 @@ $('body').on('click', () => {
 $('body').on('click', () => {
 
   if ($(event.target).hasClass('trip-card')) {
-    dom.displayTripCard();
+    let trip = trips.find(trip => trip.id === parseInt(event.target.id))
+    dom.displayTripCard(trip);
   }
 
   if ($(event.target).hasClass('modal-close')) {
