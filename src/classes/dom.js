@@ -1,21 +1,24 @@
 import $ from 'jquery';
-
 let moment = require('moment');
 
 class Dom {
   constructor() {}
 
-  async displayTravelerDashboard(user) {
+  async displayTravelerDashboard(user, date) {
     let topHTML = `<nav><h1>TripAdvicer</h1></nav><div class="user-options">
     <div class=options-top><h2>Your Trips</h2><p class="total-spent">Total Expenses: $XX</p></div><hr>
-    <div class="options-buttons"><button>Pending</button><button>Approved</button><button>Past</button></div>
+    <div class="options-buttons">
+    <button class="all traveler-filter-button">All</button>
+    <button class="pending traveler-filter-button">Pending</button>
+    <button class="upcoming traveler-filter-button">Upcoming</button>
+    <button class="past traveler-filter-button">Past</button></div>
     </div>
     <main id="grid-content">
     <section class="book-trip-card">
     <h3>Book a new trip!</h3>
     </section>`
 
-    let cards = this.createTripCards(user.trips).join('');
+    let cards = this.createTripCards(user.trips, date).join('');
 
     let bottomHTML = `</main>`;
 
@@ -26,14 +29,34 @@ class Dom {
     return `<div>admin!</div>`
   }
 
-  createTripCards(trips) {
+  createTripCards(trips, currentDate) {
     return trips.map(trip => {
-      let html = `<section class="trip-card" id="${trip.id}">
+      let tripStart = moment().format(trip.date);
+      let tripEnd = moment(trip.date, 'YYYY/MM/DD').add(10, 'days').format('YYYY/MM/DD');
+      let tripDateStatus = this.getDateStatus(tripStart, tripEnd, currentDate);
+
+      let html = `<section class="trip-card" id="${trip.id}" data-date-status="${tripDateStatus}" data-approval-status="${trip.status}">
           <img src="${trip.destination.image}" alt="${trip.destination.alt}">
+          <div class="card-bottom">
           <h3>${trip.destination.destination}</h3>
+          <p>$${trip.getTripCost()} / person</p>
+          <p>${trip.status.charAt(0).toUpperCase() + trip.status.slice(1)}</p>
+          <p>${tripStart} - ${tripEnd}</p>
+          </div>
           </section>`;
+
       return html;
     })
+  }
+
+  getDateStatus(tripStart, tripEnd, currentDate) {
+    if (moment(tripEnd, 'YYYY/MM/DD').isBefore(currentDate, 'YYYY/MM/DD')) {
+      return 'past';
+    } else if (moment(tripStart, 'YYYY/MM/DD').isAfter(currentDate, 'YYYY/MM/DD')) {
+      return 'upcoming';
+    } else {
+      return 'current';
+    }
   }
 
   hideLoginForm() {
@@ -91,6 +114,17 @@ class Dom {
             </p>
           </div>
         </div>`)
+  }
+
+  filterTravelerCards(cardLabel) {
+      $('main').find(`section.trip-card`).removeClass('hidden');
+
+      if (cardLabel === 'all') {
+      } else if (cardLabel === 'pending') {
+        $('section.trip-card').not(`[data-approval-status='${cardLabel}']`).addClass('hidden');
+      } else {
+        $('section.trip-card').not(`[data-date-status='${cardLabel}']`).addClass('hidden');
+      }
   }
 }
 

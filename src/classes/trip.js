@@ -13,6 +13,16 @@ class Trip {
     this.destination = destinations.find(destination => destination.id === this.destinationID)
   }
 
+  getTripCost(people = 1) {
+    let sum = this.destination.estimatedLodgingCostPerDay *
+              this.duration +
+              this.destination.estimatedFlightCostPerPerson;
+
+    let total = (sum * 0.1) + sum;
+
+    return `${total.toFixed()}`;
+  }
+
 }
 
 export default Trip;

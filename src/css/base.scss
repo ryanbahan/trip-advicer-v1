@@ -11,6 +11,7 @@ main {
   grid-gap: 30px;
   grid-auto-columns: min-content;
   grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  grid-auto-rows: min-content;
 }
 
 button {
@@ -29,6 +30,7 @@ button {
 
 .trip-card img,
 .book-trip-card img {
+  height: 60%;
   width: 100%;
   border-radius: 2.5%;
 }
@@ -49,6 +51,11 @@ button {
 
 .trip-card > * {
   pointer-events: none;
+}
+
+.card-bottom {
+  width: 100%;
+  height: 100%;
 }
 
 .book-trip-card {
@@ -79,6 +86,11 @@ button {
   margin: 5px;
 }
 
+.options-buttons button {
+  background-color: #fff;
+  cursor: pointer;
+}
+
 .total-spent {
   padding-left: 5%;
 }
@@ -87,4 +99,8 @@ hr {
   width: 30%;
   margin-left: 0;
   text-align: left;
+}
+
+.hidden {
+  display: none;
 }
