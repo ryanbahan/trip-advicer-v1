@@ -100,10 +100,6 @@ $('body').on('click', () => {
     dom.clearTripCards();
     let htmlString = dom.displayRevenueView();
     $('.grid-container').append(htmlString);
-
-    datepickerStart = datepicker('.start', { id: 1 });
-    datepickerEnd = datepicker('.end', { id: 1 });
-    console.log(datepickerStart);
   }
 
   if ($(event.target).hasClass('pending-admin-filter-li')) {
@@ -134,7 +130,6 @@ $('body').on('click', () => {
 
 //Shared admin/user functionality
 $('body').on('click', () => {
-  console.log(user);
 
   if ($(event.target).hasClass('modal-close')) {
     dom.closeModal();
