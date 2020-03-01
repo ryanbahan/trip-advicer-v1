@@ -161,6 +161,7 @@ hr {
 .admin-nav {
   background: rgb(20,183,255);
   background: linear-gradient(90deg, rgba(20,183,255,1) 0%, rgba(80,201,255,1) 100%);
+  box-shadow: 2.5px 2.5px 5px hsla(0,0%,0%, 0.1);
   color: #fff;
   padding: 1.5% 2.5%;
   min-width: 150px;
@@ -192,7 +193,7 @@ hr {
 }
 
 .trip-modal {
-  width: 30%;
+  width: 35%;
   border: solid 0.25px hsla(0,0%,0%, 0.15);
   box-shadow: 2.5px 2.5px 5px hsla(0,0%,0%, 0.15);
   background-color: #fff;

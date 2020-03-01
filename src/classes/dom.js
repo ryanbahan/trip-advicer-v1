@@ -5,6 +5,7 @@ class Dom {
   constructor() {}
 
   async displayTravelerDashboard(user, date) {
+    let userCredentials = 'traveler';
     let topHTML = `<nav><h1 class="traveler-title">TripAdvicer</h1></nav><div class="user-options">
     <div class=options-top><h2>Your Trips</h2><p class="total-spent">Total Expenses: $XX</p></div><hr>
     <div class="options-buttons">
@@ -19,7 +20,7 @@ class Dom {
     <h3>Book a new trip!</h3>
     </section>`
 
-    let cards = this.createTripCards(user.trips, date).join('');
+    let cards = this.createTripCards(user.trips, date, userCredentials).join('');
 
     let bottomHTML = `</div></main>`;
 
@@ -27,6 +28,7 @@ class Dom {
   }
 
   displayAdminDashboard(allUsers, trips, date) {
+    let userCredentials = 'admin'
     let topHTML =  `<div class="admin-container">
     <aside class="admin-nav">
     <h1>TripAdvicer</h1>
@@ -43,7 +45,7 @@ class Dom {
 
     trips = trips.filter(trip => trip.destination !== undefined);
 
-    let middleHTML = this.displayPendingView(trips, date).join('');
+    let middleHTML = this.displayPendingView(trips, date, userCredentials).join('');
 
     let bottomHTML = `</div></main></div>`;
 
@@ -58,29 +60,29 @@ class Dom {
     console.log('revenue');
   }
 
-  displayPendingView(trips, date) {
-    return this.createTripCards(trips, date).filter(card => card.includes('data-approval-status="pending"'));
+  displayPendingView(trips, date, userCredentials) {
+    return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-approval-status="pending"'));
   }
 
-  displayUpcomingView(trips, date) {
-    return this.createTripCards(trips, date).filter(card => card.includes('data-date-status="upcoming"'));
+  displayUpcomingView(trips, date, userCredentials) {
+    return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="upcoming"'));
   }
 
-  displayPastView(trips, date) {
-    return this.createTripCards(trips, date).filter(card => card.includes('data-date-status="past"'));
+  displayPastView(trips, date, userCredentials) {
+    return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="past"'));
   }
 
-  displayCurrentView(trips, date) {
-    return this.createTripCards(trips, date).filter(card => card.includes('data-date-status="current"'));
+  displayCurrentView(trips, date, userCredentials) {
+    return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="current"'));
   }
 
-  createTripCards(trips, currentDate) {
+  createTripCards(trips, currentDate, userRole) {
     return trips.map(trip => {
       let tripStart = moment().format(trip.date);
-      let tripEnd = moment(trip.date, 'YYYY/MM/DD').add(10, 'days').format('YYYY/MM/DD');
+      let tripEnd = moment(trip.date, 'YYYY/MM/DD').add(trip.duration, 'days').format('YYYY/MM/DD');
       let tripDateStatus = this.getDateStatus(tripStart, tripEnd, currentDate);
 
-      let html = `<section class="trip-card" id="${trip.id}" data-date-status="${tripDateStatus}" data-approval-status="${trip.status}">
+      let html = `<section class="${userRole} trip-card" id="${trip.id}" data-date-status="${tripDateStatus}" data-approval-status="${trip.status}">
           <img src="${trip.destination.image}" alt="${trip.destination.alt}" class="card-image">
           <div class="card-bottom">
           <div class="top-row">
@@ -166,6 +168,7 @@ class Dom {
   }
 
   displayTripCard(trip) {
+    console.log(trip);
     let individualCost = trip.getIndividualCost(trip.travelers);
     let durationNumber = trip.duration;
     let travelers = trip.travelers;

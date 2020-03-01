@@ -12,6 +12,7 @@ let moment = require('moment');
 let trips;
 let destinations;
 let user;
+let userCredentials;
 let allUsers;
 let currentDate = moment().format('YYYY/MM/DD');
 
@@ -21,10 +22,12 @@ const displayDashboard = async (userRole) => {
   if (userRole === 0) {
     allUsers = await FetchController.getAllUsers();
     user = new Agent();
+    userCredentials = 'admin';
     htmlString = dom.displayAdminDashboard(allUsers, trips, currentDate);
   } else {
     let fetchedUser = await FetchController.getUser(userRole);
 
+    userCredentials = 'traveler';
     user = new Traveler(fetchedUser);
     user.trips = trips.filter(trip => trip.userID === user.id);
     htmlString = await dom.displayTravelerDashboard(user, currentDate);
@@ -79,25 +82,25 @@ $('body').on('click', () => {
 
   if ($(event.target).hasClass('pending-admin-filter-li')) {
     dom.clearTripCards();
-    let htmlString = dom.displayPendingView(trips, currentDate);
+    let htmlString = dom.displayPendingView(trips, currentDate, userCredentials);
     $('.grid-container').append(htmlString);
   }
 
   if ($(event.target).hasClass('upcoming-admin-filter-li')) {
     dom.clearTripCards();
-    let htmlString = dom.displayUpcomingView(trips, currentDate);
+    let htmlString = dom.displayUpcomingView(trips, currentDate, userCredentials);
     $('.grid-container').append(htmlString);
   }
 
   if ($(event.target).hasClass('current-admin-filter-li')) {
     dom.clearTripCards();
-    let htmlString = dom.displayCurrentView(trips, currentDate);
+    let htmlString = dom.displayCurrentView(trips, currentDate, userCredentials);
     $('.grid-container').append(htmlString);
   }
 
   if ($(event.target).hasClass('past-admin-filter-li')) {
     dom.clearTripCards();
-    let htmlString = dom.displayPastView(trips, currentDate);
+    let htmlString = dom.displayPastView(trips, currentDate, userCredentials);
     $('.grid-container').append(htmlString);
   }
 
