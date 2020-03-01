@@ -84,7 +84,8 @@ $('body').on('click', () => {
 
   if ($(event.target).hasClass('book-form-submit')) {
     event.preventDefault();
-    dom.submitBookTripForm();
+    let formSubmissionData = dom.submitBookTripForm();
+    console.log(formSubmissionData);
   }
 
   if ($(event.target).hasClass('trip-card') &&

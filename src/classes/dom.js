@@ -354,11 +354,15 @@ class Dom {
     startDate = moment(startDate).format('YYYY/MM/DD');
     endDate = moment(endDate).format('YYYY/MM/DD');
 
-    if (moment(startDate).isBefore(endDate)) {
-      console.log('true');
+    // if (moment(startDate).isBefore(endDate)) {
+    //   console.log('true');
+    // }
+    return {
+      destination: destination,
+      startDate: startDate,
+      endDate: endDate,
+      travelers: travelers
     }
-
-    console.log(destination, startDate, endDate, travelers);
   }
 }
 
