@@ -344,6 +344,15 @@ class Dom {
   outputHtml(matches);
 
   }
+
+  submitBookTripForm() {
+    let destination = $("form").find('.destination-input').val();
+    let startDate = $("form").find('.start').val();
+    let endDate = $("form").find('.end').val();
+    let travelers = $("form").find('.number-guests').val();
+
+    console.log(destination, startDate, endDate, travelers);
+  }
 }
 
 export default Dom;

@@ -72,6 +72,7 @@ $('body').on('click', () => {
 
   if ($(event.target).hasClass('book-form-submit')) {
     event.preventDefault();
+    dom.submitBookTripForm();
   }
 
   if ($(event.target).hasClass('trip-card') &&
