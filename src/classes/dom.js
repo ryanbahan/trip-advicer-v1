@@ -39,6 +39,8 @@ class Dom {
     </aside>
     <main>`
 
+    trips = trips.filter(trip => trip.destination !== undefined);
+
     let middleHTML = this.displayPendingView(trips, date).join('');
 
     let bottomHTML = `</main></div>`;
