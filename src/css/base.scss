@@ -1,3 +1,7 @@
+html {
+  position: relative;
+}
+
 body {
   padding: 0 2.5%;
 }
@@ -103,4 +107,30 @@ hr {
 
 .hidden {
   display: none;
+}
+
+.modal-opacity {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: hsla(0,0%,0%, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trip-modal {
+  width: 50%;
+  border: solid 1px black;
+  background-color: #fff;
+  border-radius: 5px;
+  max-height: 85vh;
+  overflow: scroll;
+}
+
+.trip-modal img {
+  width: 100%;
+  height: 40%;
 }

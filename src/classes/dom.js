@@ -36,12 +36,12 @@ class Dom {
       let tripDateStatus = this.getDateStatus(tripStart, tripEnd, currentDate);
 
       let html = `<section class="trip-card" id="${trip.id}" data-date-status="${tripDateStatus}" data-approval-status="${trip.status}">
-          <img src="${trip.destination.image}" alt="${trip.destination.alt}">
+          <img src="${trip.destination.image}" alt="${trip.destination.alt}" class="card-image">
           <div class="card-bottom">
-          <h3>${trip.destination.destination}</h3>
-          <p>$${trip.getTripCost()} / person</p>
-          <p>${trip.status.charAt(0).toUpperCase() + trip.status.slice(1)}</p>
-          <p>${tripStart} - ${tripEnd}</p>
+          <h3 class="trip-title">${trip.destination.destination}</h3>
+          <p class="trip-cost">$${trip.getTripCost()} / person</p>
+          <p class="trip-status">${trip.status.charAt(0).toUpperCase() + trip.status.slice(1)}</p>
+          <p class="trip-duration">${tripStart} - ${tripEnd}</p>
           </div>
           </section>`;
 
@@ -125,6 +125,31 @@ class Dom {
       } else {
         $('section.trip-card').not(`[data-date-status='${cardLabel}']`).addClass('hidden');
       }
+  }
+
+  displayTripCard() {
+    let title = $(event.target).find('.trip-title').html();
+    let status = $(event.target).find('.trip-status').html();
+    let cost = $(event.target).find('.trip-cost').html();
+    let duration = $(event.target).find('.trip-duration').html();
+    let card = $(event.target).children();
+    let image = $(event.target).find('img').attr('src');
+    let imageAlt = $(event.target).find('img').attr('alt');
+
+    $('body').append(`<div class="modal-opacity">
+    <section class="trip-modal">
+    <img src ="${image}" alt = "${imageAlt}">
+    <h3>${title}</h3>
+    <p class="trip-cost">${cost}</p>
+    <p class="trip-status">${status}</p>
+    <p class="trip-duration">${duration}</p>
+    <p class="modal-close">Close</p>
+    </section>
+    </div>`)
+  }
+
+  closeModal() {
+    $('body').find('.modal-opacity').remove();
   }
 }
 

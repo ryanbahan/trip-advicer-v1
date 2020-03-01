@@ -56,12 +56,20 @@ const fetchDashboardData = async () => {
 
 
 $('body').on('click', () => {
-  dom.displayTripCard();
+  if ($(event.target).hasClass('trip-card')) {
+    dom.displayTripCard();
+  }
+
   dom.displayBookTripCard();
-  
+
   if ($(event.target).hasClass('traveler-filter-button')) {
     dom.filterTravelerCards(event.target.classList[0]);
   }
+
+  if ($(event.target).hasClass('modal-close')) {
+    dom.closeModal();
+  }
+
 })
 
 fetchDashboardData();
