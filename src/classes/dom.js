@@ -30,8 +30,9 @@ class Dom {
     <aside class="admin-nav">
     <h1>TripAdvicer</h1>
     <ul class="admin-nav-list">
-    <li class="revenue-admin-filter-li">Revenue</li>
+    <li class="revenue-admin-filter-li">Revenue Dashboard</li>
     <li class="pending-admin-filter-li">Pending Trips</li>
+    <li class="current-admin-filter-li">Current Trips</li>
     <li class="upcoming-admin-filter-li">Upcoming Trips</li>
     <li class="past-admin-filter-li">Past Trips</li>
     </ul>
