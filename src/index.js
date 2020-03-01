@@ -48,8 +48,9 @@ const fetchDashboardData = async () => {
 };
 
 const addDatepicker = () => {
-  datepickerStart = datepicker('.start', { id: 1 });
-  datepickerEnd = datepicker('.end', { id: 1 });
+  let id = Date.now()
+  let datepickerStart = datepicker('.start', { id: id });
+  let datepickerEnd = datepicker('.end', { id: id });
 }
 
 // Login form

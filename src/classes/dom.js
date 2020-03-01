@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import datepicker from 'js-datepicker';
 let moment = require('moment');
 
 class Dom {
