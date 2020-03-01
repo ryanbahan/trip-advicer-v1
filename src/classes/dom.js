@@ -5,7 +5,7 @@ class Dom {
   constructor() {}
 
   async displayTravelerDashboard(user, date) {
-    let topHTML = `<nav><h1>TripAdvicer</h1></nav><div class="user-options">
+    let topHTML = `<nav><h1 class="traveler-title">TripAdvicer</h1></nav><div class="user-options">
     <div class=options-top><h2>Your Trips</h2><p class="total-spent">Total Expenses: $XX</p></div><hr>
     <div class="options-buttons">
     <button class="all traveler-filter-button">All</button>
