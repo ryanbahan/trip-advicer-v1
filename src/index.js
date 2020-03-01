@@ -58,7 +58,10 @@ const fetchDashboardData = async () => {
 $('body').on('click', () => {
   dom.displayTripCard();
   dom.displayBookTripCard();
-  dom.filterTravelerCards();
+  
+  if ($(event.target).hasClass('traveler-filter-button')) {
+    dom.filterTravelerCards(event.target.classList[0]);
+  }
 })
 
 fetchDashboardData();

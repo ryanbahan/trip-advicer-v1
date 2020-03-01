@@ -8,10 +8,10 @@ class Dom {
     let topHTML = `<nav><h1>TripAdvicer</h1></nav><div class="user-options">
     <div class=options-top><h2>Your Trips</h2><p class="total-spent">Total Expenses: $XX</p></div><hr>
     <div class="options-buttons">
-    <button class="traveler-all-trips traveler-filter-button">All</button>
-    <button class="traveler-pending-trips traveler-filter-button">Pending</button>
-    <button class="traveler-approved-trips traveler-filter-button">Approved</button>
-    <button class="traveler-past-trips traveler-filter-button">Past</button></div>
+    <button class="all traveler-filter-button">All</button>
+    <button class="pending traveler-filter-button">Pending</button>
+    <button class="upcoming traveler-filter-button">Upcoming</button>
+    <button class="past traveler-filter-button">Past</button></div>
     </div>
     <main id="grid-content">
     <section class="book-trip-card">
@@ -35,11 +35,11 @@ class Dom {
       let tripEnd = moment(trip.date, 'YYYY/MM/DD').add(10, 'days').format('YYYY/MM/DD');
       let tripDateStatus = this.getDateStatus(tripStart, tripEnd, currentDate);
 
-      let html = `<section class="trip-card" id="${trip.id}" data-date-status="${tripDateStatus}">
+      let html = `<section class="trip-card" id="${trip.id}" data-date-status="${tripDateStatus}" data-approval-status="${trip.status}">
           <img src="${trip.destination.image}" alt="${trip.destination.alt}">
           <div class="card-bottom">
           <h3>${trip.destination.destination}</h3>
-          <p>Trip Cost: $${trip.getTripCost()} / person</p>
+          <p>$${trip.getTripCost()} / person</p>
           <p>${trip.status.charAt(0).toUpperCase() + trip.status.slice(1)}</p>
           <p>${tripStart} - ${tripEnd}</p>
           </div>
@@ -116,10 +116,15 @@ class Dom {
         </div>`)
   }
 
-  filterTravelerCards() {
-    if ($(event.target).hasClass('traveler-filter-button')) {
-      console.log('yup');
-    }
+  filterTravelerCards(cardLabel) {
+      $('main').find(`section.trip-card`).removeClass('hidden');
+
+      if (cardLabel === 'all') {
+      } else if (cardLabel === 'pending') {
+        $('section.trip-card').not(`[data-approval-status='${cardLabel}']`).addClass('hidden');
+      } else {
+        $('section.trip-card').not(`[data-date-status='${cardLabel}']`).addClass('hidden');
+      }
   }
 }
 
