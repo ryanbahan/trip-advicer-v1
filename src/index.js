@@ -57,20 +57,12 @@ $('body').on('submit', () => {
 // User view
 $('body').on('click', () => {
 
-  if ($(event.target).hasClass('trip-card')) {
-    dom.displayTripCard();
-  }
-
   if ($(event.target).hasClass('book-trip-card')) {
     dom.displayBookTripCard();
   }
 
   if ($(event.target).hasClass('traveler-filter-button')) {
     dom.filterTravelerCards(event.target.classList[0]);
-  }
-
-  if ($(event.target).hasClass('modal-close')) {
-    dom.closeModal();
   }
 
 })
@@ -93,6 +85,19 @@ $('body').on('click', () => {
 
   if ($(event.target).hasClass('past-admin-filter-li')) {
     dom.displayPastView();
+  }
+
+})
+
+//Shared admin/user functionality
+$('body').on('click', () => {
+
+  if ($(event.target).hasClass('trip-card')) {
+    dom.displayTripCard();
+  }
+
+  if ($(event.target).hasClass('modal-close')) {
+    dom.closeModal();
   }
 
 })
