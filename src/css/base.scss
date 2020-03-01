@@ -73,6 +73,10 @@ button {
   border-radius: 2.5%;
 }
 
+.book-trip-card > * {
+  pointer-events: none;
+}
+
 .user-options {
 }
 
@@ -103,6 +107,31 @@ hr {
   width: 30%;
   margin-left: 0;
   text-align: left;
+}
+
+.agent-column {
+  border: solid 0.5px black;
+  border-radius: 5px;
+  height: 80vh;
+}
+
+.overview-dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.agent-column-title {
+  padding-left: 2.5%;
+}
+
+.overview-dashboard > * {
+  flex-grow: 1;
+  border: solid 0.5px black;
+}
+
+.past-trips {
+  margin-bottom: 2.5%;
 }
 
 .hidden {

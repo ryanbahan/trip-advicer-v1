@@ -25,8 +25,27 @@ class Dom {
     return `${topHTML}${cards}${bottomHTML}`;
   }
 
-  displayAdminDashboard() {
-    return `<div>admin!</div>`
+  displayAdminDashboard(date) {
+    return `<nav><h1>TripAdvicer</h1></nav>
+    <main>
+    <section class="pending-trips agent-column">
+    <h3 class="agent-column-title">Pending Trips</h3>
+    </section>
+    <section class="current-trip agent-column">
+    <h3 class="agent-column-title">Current Trips</h3>
+    </section>
+    <section class="upcoming-trips agent-column">
+    <h3 class="agent-column-title">Upcoming Trips</h3>
+    </section>
+    <section class="overview-dashboard">
+    <div class="past-trips">
+    <h3 class="agent-column-title">Past Trips</h3>
+    </div>
+    <div class="revenue-dashboard">
+    <h3 class="agent-column-title">Revenue</h3>
+    </div>
+    </section>
+    </main>`
   }
 
   createTripCards(trips, currentDate) {
@@ -72,18 +91,6 @@ class Dom {
     }
   }
 
-  displayTripCard() {
-    if ($(event.target).hasClass("trip-card")) {
-      console.log('trip card');
-    }
-  }
-
-  displayBookTripCard() {
-    if ($(event.target).hasClass("book-trip-card")) {
-      console.log('book trip');
-    }
-  }
-
   displayLoginForm() {
     $('body').append(`<div class="form-container">
           <div class="w-full max-w-xs">
@@ -120,6 +127,7 @@ class Dom {
       $('main').find(`section.trip-card`).removeClass('hidden');
 
       if (cardLabel === 'all') {
+
       } else if (cardLabel === 'pending') {
         $('section.trip-card').not(`[data-approval-status='${cardLabel}']`).addClass('hidden');
       } else {
@@ -143,6 +151,19 @@ class Dom {
     <p class="trip-cost">${cost}</p>
     <p class="trip-status">${status}</p>
     <p class="trip-duration">${duration}</p>
+    <p class="modal-close">Close</p>
+    </section>
+    </div>`)
+  }
+
+  displayBookTripCard() {
+    $('body').append(`<div class="modal-opacity">
+    <section class="trip-modal">
+    <img src ="" alt = "">
+    <h3>test</h3>
+    <p class="trip-cost">test</p>
+    <p class="trip-status">test</p>
+    <p class="trip-duration">test</p>
     <p class="modal-close">Close</p>
     </section>
     </div>`)

@@ -1,5 +1,4 @@
 import './css/base.scss';
-
 import $ from 'jquery';
 import Agent from './classes/agent';
 import Authenticator from './classes/authenticator';
@@ -16,25 +15,13 @@ let user;
 let allUsers;
 let currentDate = moment().format('YYYY/MM/DD');
 
-$('body').on('submit', () => {
-  let credentials = dom.submitLoginForm();
-
-  let isValid = Authenticator.validate(credentials.username, credentials.password);
-  let userRole = Authenticator.checkAdmin(credentials.username);
-
-  if (isValid) {
-    dom.hideLoginForm();
-    displayDashboard(userRole);
-  }
-})
-
 const displayDashboard = async (userRole) => {
   let htmlString;
 
   if (userRole === 0) {
     allUsers = await FetchController.getAllUsers();
     user = new Agent();
-    htmlString = dom.displayAdminDashboard();
+    htmlString = dom.displayAdminDashboard(currentDate);
   } else {
     let fetchedUser = await FetchController.getUser(userRole);
 
@@ -54,13 +41,28 @@ const fetchDashboardData = async () => {
   destinations = destinationData;
 };
 
+$('body').on('submit', () => {
+  let credentials = dom.submitLoginForm();
+
+  let isValid = Authenticator.validate(credentials.username, credentials.password);
+  let userRole = Authenticator.checkAdmin(credentials.username);
+
+  if (isValid) {
+    dom.hideLoginForm();
+    displayDashboard(userRole);
+  }
+})
+
 
 $('body').on('click', () => {
+
   if ($(event.target).hasClass('trip-card')) {
     dom.displayTripCard();
   }
 
-  dom.displayBookTripCard();
+  if ($(event.target).hasClass('book-trip-card')) {
+    dom.displayBookTripCard();
+  }
 
   if ($(event.target).hasClass('traveler-filter-button')) {
     dom.filterTravelerCards(event.target.classList[0]);
