@@ -246,7 +246,7 @@ class Dom {
     <h3>Make your next trip unforgettable.</h3>
     <form>
     <label for="destination">Destination</label>
-    <input type="text" class="destination-input" id="destination" list="places-output">
+    <input type="text" class="destination-input" id="destination" list="places-output" required>
     <datalist id="places-output">
     <option value="Lima, Peru">
     </option><option value="Stockholm, Sweden">
@@ -303,15 +303,15 @@ class Dom {
     <div class="form-row">
     <div class="date-container">
     <label for="date-start">Depart</label>
-    <input type="text" class="start" id ="datepicker1">
+    <input type="text" class="start" id ="datepicker1" required>
     </div>
     <div class="date-container">
     <label for="date-end">Return</label>
-    <input type="text" class="end" id ="datepicker2">
+    <input type="text" class="end" id ="datepicker2" required>
     </div>
     </div>
     <label for="guests">Guests</label>
-    <input type="number" class="number-guests" id="guests">
+    <input type="number" class="number-guests" id="guests" required>
     <button type="submit" class="book-form-submit">Submit</button>
     </form>
     </section>
@@ -328,7 +328,7 @@ class Dom {
   const placesOutput = $('#places-output');
 
   let matches = destinations.filter(destination => {
-  const regex = new RegExp(`^${query}`, 'gi');
+  const regex = new RegExp(`${query}`, 'gi');
   return destination.destination.match(regex);
   });
 
@@ -350,6 +350,13 @@ class Dom {
     let startDate = $("form").find('.start').val();
     let endDate = $("form").find('.end').val();
     let travelers = $("form").find('.number-guests').val();
+
+    startDate = moment(startDate).format('YYYY/MM/DD');
+    endDate = moment(endDate).format('YYYY/MM/DD');
+
+    if (moment(startDate).isBefore(endDate)) {
+      console.log('true');
+    }
 
     console.log(destination, startDate, endDate, travelers);
   }

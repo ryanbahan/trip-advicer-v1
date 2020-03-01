@@ -19,6 +19,8 @@ let currentDate = moment().format('YYYY/MM/DD');
 let datepickerStart;
 let datepickerEnd;
 
+console.log(currentDate);
+
 const displayDashboard = async (userRole) => {
   let htmlString;
 
@@ -50,8 +52,18 @@ const fetchDashboardData = async () => {
 
 const addDatepicker = () => {
   let id = Date.now()
-  let datepickerStart = datepicker('.start', { id: id });
-  let datepickerEnd = datepicker('.end', { id: id });
+  let datepickerStart = datepicker('.start', {
+  formatter: (input, date, instance) => {
+    const value = date.toLocaleDateString()
+    input.value = value // => '1/1/2099'
+  }
+});
+  let datepickerEnd = datepicker('.end', {
+  formatter: (input, date, instance) => {
+    const value = date.toLocaleDateString()
+    input.value = value // => '1/1/2099'
+  }
+});
 }
 
 // Login form
