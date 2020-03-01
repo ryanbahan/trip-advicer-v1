@@ -40,8 +40,6 @@ const fetchDashboardData = async () => {
   let tripData = await FetchController.getTrips();
   let destinationData = await FetchController.getDestinations();
 
-  console.log(destinationData);
-
   trips = tripData.map(trip => new Trip(trip, destinationData));
   destinations = destinationData;
 };
