@@ -89,6 +89,12 @@ $('body').on('click', () => {
     $('.grid-container').append(htmlString);
   }
 
+  if ($(event.target).hasClass('current-admin-filter-li')) {
+    dom.clearTripCards();
+    let htmlString = dom.displayCurrentView(trips, currentDate);
+    $('.grid-container').append(htmlString);
+  }
+
   if ($(event.target).hasClass('past-admin-filter-li')) {
     dom.clearTripCards();
     let htmlString = dom.displayPastView(trips, currentDate);
