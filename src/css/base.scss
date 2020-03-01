@@ -1,9 +1,12 @@
 html {
   position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  padding: 0 2.5%;
+  margin: 0;
+  padding: 0;
 }
 
 nav {
@@ -16,6 +19,8 @@ main {
   grid-auto-columns: min-content;
   grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
   grid-auto-rows: min-content;
+  overflow: scroll;
+  padding: 2.5% 5%;
 }
 
 button {
@@ -109,33 +114,30 @@ hr {
   text-align: left;
 }
 
-.agent-column {
-  border: solid 0.5px black;
-  border-radius: 5px;
-  height: 80vh;
-}
-
-.overview-dashboard {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.agent-column-title {
-  padding-left: 2.5%;
-}
-
-.overview-dashboard > * {
-  flex-grow: 1;
-  border: solid 0.5px black;
-}
-
-.past-trips {
-  margin-bottom: 2.5%;
-}
-
 .hidden {
   display: none;
+}
+
+.admin-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.admin-nav {
+  border: solid 1px black;
+  padding: 0 2.5%;
+  min-width: 150px;
+}
+
+.admin-nav-list {
+  padding: 2.5% 0 2.5% 5%;
+  list-style-type: none;
+}
+
+.admin-nav-list li {
+  padding: 5% 0;
+  cursor: pointer;
 }
 
 .modal-opacity {

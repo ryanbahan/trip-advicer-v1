@@ -21,7 +21,7 @@ const displayDashboard = async (userRole) => {
   if (userRole === 0) {
     allUsers = await FetchController.getAllUsers();
     user = new Agent();
-    htmlString = dom.displayAdminDashboard(currentDate);
+    htmlString = dom.displayAdminDashboard(allUsers, trips, currentDate);
   } else {
     let fetchedUser = await FetchController.getUser(userRole);
 
@@ -41,6 +41,7 @@ const fetchDashboardData = async () => {
   destinations = destinationData;
 };
 
+// Login form
 $('body').on('submit', () => {
   let credentials = dom.submitLoginForm();
 
@@ -53,7 +54,7 @@ $('body').on('submit', () => {
   }
 })
 
-
+// User view
 $('body').on('click', () => {
 
   if ($(event.target).hasClass('trip-card')) {
@@ -70,6 +71,28 @@ $('body').on('click', () => {
 
   if ($(event.target).hasClass('modal-close')) {
     dom.closeModal();
+  }
+
+})
+
+//Admin view
+
+$('body').on('click', () => {
+
+  if ($(event.target).hasClass('revenue-admin-filter-li')) {
+    dom.displayRevenueView();
+  }
+
+  if ($(event.target).hasClass('pending-admin-filter-li')) {
+    dom.displayPendingView();
+  }
+
+  if ($(event.target).hasClass('upcoming-admin-filter-li')) {
+    dom.displayUpcomingView();
+  }
+
+  if ($(event.target).hasClass('past-admin-filter-li')) {
+    dom.displayPastView();
   }
 
 })

@@ -25,27 +25,40 @@ class Dom {
     return `${topHTML}${cards}${bottomHTML}`;
   }
 
-  displayAdminDashboard(date) {
-    return `<nav><h1>TripAdvicer</h1></nav>
-    <main>
-    <section class="pending-trips agent-column">
-    <h3 class="agent-column-title">Pending Trips</h3>
-    </section>
-    <section class="current-trip agent-column">
-    <h3 class="agent-column-title">Current Trips</h3>
-    </section>
-    <section class="upcoming-trips agent-column">
-    <h3 class="agent-column-title">Upcoming Trips</h3>
-    </section>
-    <section class="overview-dashboard">
-    <div class="past-trips">
-    <h3 class="agent-column-title">Past Trips</h3>
-    </div>
-    <div class="revenue-dashboard">
-    <h3 class="agent-column-title">Revenue</h3>
-    </div>
-    </section>
-    </main>`
+  displayAdminDashboard(allUsers, trips, date) {
+    let topHTML =  `<div class="admin-container">
+    <aside class="admin-nav">
+    <h1>TripAdvicer</h1>
+    <ul class="admin-nav-list">
+    <li class="revenue-admin-filter-li">Revenue</li>
+    <li class="pending-admin-filter-li">Pending Trips</li>
+    <li class="upcoming-admin-filter-li">Upcoming Trips</li>
+    <li class="past-admin-filter-li">Past Trips</li>
+    </ul>
+    </aside>
+    <main>`
+
+    let middleHTML = this.displayPendingView(trips, date).join('');
+
+    let bottomHTML = `</main></div>`;
+
+    return `${topHTML}${middleHTML}${bottomHTML}`;
+  }
+
+  displayRevenueView() {
+    console.log('revenue');
+  }
+
+  displayPendingView(trips, date) {
+    return this.createTripCards(trips, date);
+  }
+
+  displayUpcomingView() {
+    console.log('upcoming');
+  }
+
+  displayPastView() {
+    console.log('past');
   }
 
   createTripCards(trips, currentDate) {
