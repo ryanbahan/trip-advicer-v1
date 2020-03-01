@@ -237,15 +237,30 @@ class Dom {
 
   displayBookTripCard() {
     $('body').append(`<div class="modal-opacity">
-    <section class="trip-modal">
-    <img src ="" alt = "">
-    <h3>test</h3>
-    <p class="trip-cost">test</p>
-    <p class="trip-status">test</p>
-    <p class="trip-duration">test</p>
+    <section class="book-trip-modal">
+    <div class="form-close-container">
     <p class="modal-close">Close</p>
+    </div>
+    <h3>Make your next trip unforgettable.</h3>
+    <form>
+    <label for="destination">Destination</label>
+    <input type="text" id="destination">
+    <div class="form-row">
+    <div class="date-container">
+    <label for="date-start">Depart</label>
+    <input type="text" class="start" id ="datepicker1">
+    </div>
+    <div class="date-container">
+    <label for="date-end">Return</label>
+    <input type="text" class="end" id ="datepicker2">
+    </div>
+    </div>
+    <label for="guests">Guests</label>
+    <input type="number" class="number-guests" id="guests">
+    <button type="submit" class="book-form-submit">Submit</button>
+    </form>
     </section>
-    </div>`)
+    </div>`);
   }
 
   closeModal() {

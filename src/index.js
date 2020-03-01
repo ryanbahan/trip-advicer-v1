@@ -1,5 +1,6 @@
 import './css/base.scss';
 import $ from 'jquery';
+import datepicker from 'js-datepicker';
 import Agent from './classes/agent';
 import Authenticator from './classes/authenticator';
 import Dom from './classes/dom';
@@ -15,6 +16,8 @@ let user;
 let userCredentials;
 let allUsers;
 let currentDate = moment().format('YYYY/MM/DD');
+let datepickerStart;
+let datepickerEnd;
 
 const displayDashboard = async (userRole) => {
   let htmlString;
@@ -44,6 +47,11 @@ const fetchDashboardData = async () => {
   destinations = destinationData;
 };
 
+const addDatepicker = () => {
+  datepickerStart = datepicker('.start', { id: 1 });
+  datepickerEnd = datepicker('.end', { id: 1 });
+}
+
 // Login form
 $('body').on('submit', () => {
   let credentials = dom.submitLoginForm();
@@ -59,6 +67,7 @@ $('body').on('submit', () => {
 
 // User view
 $('body').on('click', () => {
+    console.log(datepickerStart);
 
   if ($(event.target).hasClass('trip-card') &&
       $(event.target).hasClass('traveler')) {
@@ -68,6 +77,7 @@ $('body').on('click', () => {
 
   if ($(event.target).hasClass('book-trip-card')) {
     dom.displayBookTripCard();
+    addDatepicker();
   }
 
   if ($(event.target).hasClass('traveler-filter-button')) {
@@ -90,6 +100,10 @@ $('body').on('click', () => {
     dom.clearTripCards();
     let htmlString = dom.displayRevenueView();
     $('.grid-container').append(htmlString);
+
+    datepickerStart = datepicker('.start', { id: 1 });
+    datepickerEnd = datepicker('.end', { id: 1 });
+    console.log(datepickerStart);
   }
 
   if ($(event.target).hasClass('pending-admin-filter-li')) {
