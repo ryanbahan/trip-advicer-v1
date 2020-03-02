@@ -94,6 +94,13 @@ $('body').on('submit', () => {
   }
 })
 
+// Destination confirmation form
+$('body').on('click', () => {
+  if ($(event.target).hasClass('destination-confirmation-submit')) {
+    console.log('yep');
+  }
+})
+
 // User view
 $('body').on('click', () => {
 

@@ -373,9 +373,11 @@ class Dom {
   }
 
   displayTripConfirmation(tripData, trips) {
-    console.log(tripData);
     $('.book-trip-modal').empty();
     $('.book-trip-modal').append(`
+      <div class="form-close-container">
+      <p class="modal-close">Close</p>
+      </div>
       <h3>You're almost there.</h3>
       <img src="${tripData.destination.image}" alt="${tripData.destination.alt}" class="confirm-trip-image">
       <h3>${tripData.destination.destination}</h3>
@@ -386,7 +388,6 @@ class Dom {
       </div>
       <button type="submit" class="destination-confirmation-submit">Confirm Trip</button>
       `)
-    console.log(tripData);
   }
 }
 
