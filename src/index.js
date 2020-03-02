@@ -141,21 +141,35 @@ $('body').on('click', () => {
 
 //Admin view
 
-$('body').on('click', () => {
+$('body').on('click', async () => {
 
   if ($(event.target).hasClass('trip-approve')) {
     let tripID = parseInt($(event.target).closest('.admin').attr('id'));
     let trip = trips.find(trip => trip.id === parseInt(tripID));
-
     dom.updateTripStatus('Approved', event);
-    FetchController.approveTrip(tripID);
+    dom.clearDashboard();
+    await FetchController.approveTrip(tripID);
+    await fetchDashboardData();
+    await displayDashboard(user.id);
   }
+
+})
+
+$('body').on('click', async () => {
 
   if ($(event.target).hasClass('trip-deny')) {
     let tripID = parseInt($(event.target).closest('.admin').attr('id'));
     dom.updateTripStatus('Denied', event);
     FetchController.denyTrip(tripID);
+    dom.clearDashboard();
+    await FetchController.approveTrip(tripID);
+    await fetchDashboardData();
+    await displayDashboard(user.id);
   }
+
+})
+
+$('body').on('click', () => {
 
   if ($(event.target).hasClass('trip-card') &&
       $(event.target).hasClass('admin')) {
