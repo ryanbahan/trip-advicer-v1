@@ -144,7 +144,11 @@ $('body').on('click', () => {
 $('body').on('click', () => {
 
   if ($(event.target).hasClass('trip-approve')) {
+    let tripID = $(event.target).closest('.admin').attr('id');
+    let trip = trips.find(trip => trip.id === parseInt(tripID));
+
     dom.updateTripStatus('Approved', event);
+    FetchController.approveTrip(trip.id);
   }
 
   if ($(event.target).hasClass('trip-deny')) {
