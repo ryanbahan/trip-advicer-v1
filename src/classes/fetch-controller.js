@@ -37,8 +37,25 @@ class FetchController {
     return destinations.destinations;
   }
 
-  static async postTrip(trip, user) {
-    // console.log(formattedTripData);
+  static async postTrip(trip) {
+    let formattedTripData = {...trip};
+    delete formattedTripData.destination;
+    formattedTripData = JSON.stringify(formattedTripData);
+    console.log(formattedTripData);
+
+    let response = await fetch(
+      "https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/trips",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: formattedTripData
+      }
+    );
+
+    let retrievedData = await response.json();
+    console.log(retrievedData);
   }
 }
 

@@ -18,6 +18,7 @@ let allUsers;
 let currentDate = moment().format('YYYY/MM/DD');
 let datepickerStart;
 let datepickerEnd;
+let tripData;
 
 const displayDashboard = async (userRole) => {
   let htmlString;
@@ -94,15 +95,12 @@ $('body').on('submit', () => {
   }
 })
 
-// Destination confirmation form
-$('body').on('click', () => {
-  if ($(event.target).hasClass('destination-confirmation-submit')) {
-    console.log('yep');
-  }
-})
-
 // User view
 $('body').on('click', () => {
+
+  if ($(event.target).hasClass('destination-confirmation-submit')) {
+    FetchController.postTrip(tripData);
+  }
 
   if ($(event.target).hasClass('book-form-submit')) {
     event.preventDefault();
@@ -110,10 +108,8 @@ $('body').on('click', () => {
     let validCredentials = Authenticator.validateDestinationForm(formSubmissionData, destinations);
 
     if (validCredentials) {
-      let tripData = formatDestinationFormData(validCredentials, user);
-      console.log(tripData);
+      tripData = formatDestinationFormData(validCredentials, user);
       dom.displayTripConfirmation(tripData, destinations);
-      FetchController.postTrip(tripData, user)
     }
   }
 
