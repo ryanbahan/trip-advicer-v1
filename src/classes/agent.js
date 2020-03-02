@@ -4,14 +4,16 @@ class Agent {
     this.trips = trips
   }
 
-  getTotalTripCost() {
-    let currentTrips = this.trips.filter(trip => trip.date.includes('2020'));
+  getTotalCommission() {
+    let currentTrips = this.trips.filter(trip => trip.date.includes('2020') && trip.status === "approved");
 
     let cost = currentTrips.map(trip => {
       return parseInt(trip.getTripCost(trip.travelers))
     });
 
     cost = cost.reduce((num, tripCost) => num += tripCost);
+    cost = cost * 0.1;
+
     return cost.toLocaleString("en-US", { style: "currency", currency: "USD" });
   }
 }

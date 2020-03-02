@@ -211,7 +211,7 @@ $('body').on('click', () => {
 
 //Shared admin/user functionality
 $('body').on('click', () => {
-
+  
   if ($(event.target).hasClass('modal-close')) {
     dom.closeModal();
   }
