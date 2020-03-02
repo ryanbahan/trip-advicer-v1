@@ -26,7 +26,6 @@ const displayDashboard = async (userRole) => {
   if (userRole === 0) {
     allUsers = await FetchController.getAllUsers();
     user = new Agent(trips);
-    console.log(user);
     userCredentials = 'admin';
     htmlString = dom.displayAdminDashboard(allUsers, trips, currentDate);
   } else {
@@ -42,11 +41,11 @@ const displayDashboard = async (userRole) => {
 }
 
 const fetchDashboardData = async () => {
-  let tripData = await FetchController.getTrips();
-  let destinationData = await FetchController.getDestinations();
+  let fetchedTripData = await FetchController.getTrips();
+  let fetchedDestinationData = await FetchController.getDestinations();
 
-  trips = tripData.map(trip => new Trip(trip, destinationData));
-  destinations = destinationData;
+  trips = fetchedTripData.map(trip => new Trip(trip, fetchedDestinationData));
+  destinations = fetchedDestinationData;
 };
 
 const addDatepicker = () => {
@@ -95,13 +94,20 @@ $('body').on('submit', () => {
   }
 })
 
-// User view
-$('body').on('click', () => {
+$('body').on('click', async () => {
 
   if ($(event.target).hasClass('destination-confirmation-submit')) {
-    FetchController.postTrip(tripData);
     dom.closeTripModal();
+    dom.clearDashboard();
+    await FetchController.postTrip(tripData);
+    await fetchDashboardData();
+    await displayDashboard(user.id);
   }
+
+})
+
+// User view
+$('body').on('click', () => {
 
   if ($(event.target).hasClass('book-form-submit')) {
     event.preventDefault();
