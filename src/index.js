@@ -81,6 +81,8 @@ const formatDestinationFormData = (trip, user) => {
   return new Trip(formattedTripData, destinations);
 }
 
+
+
 // Login form
 $('body').on('submit', () => {
   let credentials = dom.submitLoginForm();
@@ -140,6 +142,14 @@ $('body').on('click', () => {
 //Admin view
 
 $('body').on('click', () => {
+
+  if ($(event.target).hasClass('trip-approve')) {
+    dom.updateTripStatus('Approved', event);
+  }
+
+  if ($(event.target).hasClass('trip-deny')) {
+    dom.updateTripStatus('Denied', event);
+  }
 
   if ($(event.target).hasClass('trip-card') &&
       $(event.target).hasClass('admin')) {

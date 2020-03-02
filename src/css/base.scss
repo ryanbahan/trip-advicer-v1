@@ -250,6 +250,23 @@ form label {
   justify-content: space-between;
 }
 
+.form-button-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-admin-container {
+  display: flex;
+}
+
+.button-admin-container button {
+  font-size: 15px;
+  cursor: pointer;
+  align-self: center;
+  padding: 5px 15px;
+  margin-right: 2.5%;
+}
+
 .date-container {
   width: 47.5%;
 }

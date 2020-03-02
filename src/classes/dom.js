@@ -178,7 +178,7 @@ class Dom {
   }
 
   displayTripCard(trip) {
-    console.log('traveler');
+
     let individualCost = trip.getIndividualCost(trip.travelers);
     let durationNumber = trip.duration;
     let travelers = trip.travelers;
@@ -212,7 +212,7 @@ class Dom {
   }
 
   displayAdminTripCard(trip) {
-    console.log('admin');
+
     let individualCost = trip.getIndividualCost(trip.travelers);
     let durationNumber = trip.duration;
     let travelers = trip.travelers;
@@ -226,11 +226,13 @@ class Dom {
     let imageAlt = $(event.target).find('img').attr('alt');
 
     $('body').append(`<div class="modal-opacity">
-    <section class="trip-modal">
+    <section class="trip-modal" id="${trip.id}">
     <img src ="${image}" alt = "${imageAlt}" class="modal-image">
     <div class="modal-bottom">
     <h3 class="modal-title">${title}</h3>
-    <p class="trip-status">Status: ${status}</p>
+    <div class="form-button-row">
+    <p class="trip-status">Status: ${status}</p><div class="button-admin-container"><button class="trip-approve">Approve</button><button class="trip-deny">Cancel</button></div>
+    </div>
     <p class="modal-trip-cost">Commission: $${commission}</p>
     <p class="modal-trip-cost">Total cost: ${totalCost}</p>
     <p class="modal-trip-cost">Cost per person: $${individualCost}</p>
@@ -396,6 +398,10 @@ class Dom {
 
   closeTripModal() {
     $('.modal-opacity').remove();
+  }
+
+  updateTripStatus(status, event) {
+    $(event.target).parent().siblings('.trip-status').text(`Status: ${status}`);
   }
 }
 
