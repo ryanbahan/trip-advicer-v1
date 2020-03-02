@@ -19,8 +19,6 @@ let currentDate = moment().format('YYYY/MM/DD');
 let datepickerStart;
 let datepickerEnd;
 
-console.log(currentDate);
-
 const displayDashboard = async (userRole) => {
   let htmlString;
 
@@ -85,7 +83,8 @@ $('body').on('click', () => {
   if ($(event.target).hasClass('book-form-submit')) {
     event.preventDefault();
     let formSubmissionData = dom.submitBookTripForm();
-    console.log(formSubmissionData);
+    let isValid = Authenticator.validateDestinationForm(formSubmissionData, destinations);
+    console.log(isValid);
   }
 
   if ($(event.target).hasClass('trip-card') &&

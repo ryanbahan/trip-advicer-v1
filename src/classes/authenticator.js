@@ -1,3 +1,5 @@
+let moment = require('moment');
+
 class Authenticator {
   constructor() {}
 
@@ -35,6 +37,25 @@ class Authenticator {
       return userID;
     } else {
       return false;
+    }
+  }
+
+  static validateDestinationForm(formSubmissionData, destinations) {
+    let validDates = this.checkFormDates(formSubmissionData.startDate, formSubmissionData.endDate);
+    let validDestination = destinations.find(destination =>
+      destination.destination.includes(formSubmissionData.destination));
+    let validGroupNumber = parseInt(formSubmissionData.travelers);
+
+    if (validDates && validDestination && validGroupNumber) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  static checkFormDates(start, end) {
+    if (moment(start).isBefore(end)) {
+      return true;
     }
   }
 }
