@@ -77,7 +77,8 @@ const formatDestinationFormData = (trip, user) => {
     "status": "pending",
     "suggestedActivities": []
   }
-  return formattedTripData
+
+  return new Trip(formattedTripData, destinations);
 }
 
 // Login form
@@ -104,7 +105,7 @@ $('body').on('click', () => {
     if (validCredentials) {
       let tripData = formatDestinationFormData(validCredentials, user);
       console.log(tripData);
-      // console.log(new Trip(validCredentials, destinations));
+      dom.displayTripConfirmation(tripData, destinations);
       FetchController.postTrip(tripData, user)
     }
   }

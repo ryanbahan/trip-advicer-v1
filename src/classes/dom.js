@@ -371,6 +371,23 @@ class Dom {
       duration: duration
     }
   }
+
+  displayTripConfirmation(tripData, trips) {
+    console.log(tripData);
+    $('.book-trip-modal').empty();
+    $('.book-trip-modal').append(`
+      <h3>You're almost there.</h3>
+      <img src="${tripData.destination.image}" alt="${tripData.destination.alt}" class="confirm-trip-image">
+      <h3>${tripData.destination.destination}</h3>
+      <div class="form-row">
+      <p>Total Cost: $${tripData.getTripCost(tripData.travelers)}</p>
+      <p>Travelers: ${tripData.travelers}</p>
+      <p>Cost per person: $${tripData.getIndividualCost(tripData.travelers)}</p>
+      </div>
+      <button type="submit" class="destination-confirmation-submit">Confirm Trip</button>
+      `)
+    console.log(tripData);
+  }
 }
 
 export default Dom;
