@@ -100,6 +100,7 @@ $('body').on('click', () => {
 
   if ($(event.target).hasClass('destination-confirmation-submit')) {
     FetchController.postTrip(tripData);
+    dom.closeTripModal();
   }
 
   if ($(event.target).hasClass('book-form-submit')) {

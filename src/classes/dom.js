@@ -389,6 +389,10 @@ class Dom {
       <button type="submit" class="destination-confirmation-submit">Confirm Trip</button>
       `)
   }
+
+  closeTripModal() {
+    $('.modal-opacity').remove();
+  }
 }
 
 export default Dom;
