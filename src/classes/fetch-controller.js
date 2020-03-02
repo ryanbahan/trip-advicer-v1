@@ -36,6 +36,22 @@ class FetchController {
 
     return destinations.destinations;
   }
+
+  static async postTrip(trip, user) {
+    let id = Date.now() - Math.floor(Math.random() * Math.floor(1000));
+
+    let formattedTripData = {
+      "id": id,
+      "userID": user.id,
+      "destinationID": trip.destination,
+      "travelers": trip.travelers,
+      "date": trip.startDate,
+      "duration": 8,
+      "status": "pending",
+      "suggestedActivities": []
+    }
+    console.log(formattedTripData);
+  }
 }
 
 export default FetchController;

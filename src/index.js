@@ -83,8 +83,11 @@ $('body').on('click', () => {
   if ($(event.target).hasClass('book-form-submit')) {
     event.preventDefault();
     let formSubmissionData = dom.submitBookTripForm();
-    let isValid = Authenticator.validateDestinationForm(formSubmissionData, destinations);
-    console.log(isValid);
+    let validCredentials = Authenticator.validateDestinationForm(formSubmissionData, destinations);
+
+    if (validCredentials) {
+      FetchController.postTrip(validCredentials, user)
+    }
   }
 
   if ($(event.target).hasClass('trip-card') &&
