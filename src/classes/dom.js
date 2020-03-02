@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import datepicker from 'js-datepicker';
 let moment = require('moment');
 
 class Dom {
@@ -62,18 +63,22 @@ class Dom {
   }
 
   displayPendingView(trips, date, userCredentials) {
+    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-approval-status="pending"'));
   }
 
   displayUpcomingView(trips, date, userCredentials) {
+    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="upcoming"'));
   }
 
   displayPastView(trips, date, userCredentials) {
+    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="past"'));
   }
 
   displayCurrentView(trips, date, userCredentials) {
+    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="current"'));
   }
 
@@ -245,19 +250,72 @@ class Dom {
     <h3>Make your next trip unforgettable.</h3>
     <form>
     <label for="destination">Destination</label>
-    <input type="text" id="destination">
+    <input type="text" class="destination-input" id="destination" list="places-output" required>
+    <datalist id="places-output">
+    <option value="Lima, Peru">
+    </option><option value="Stockholm, Sweden">
+    </option><option value="Sydney, Austrailia">
+    </option><option value="Cartagena, Colombia">
+    </option><option value="Madrid, Spain">
+    </option><option value="Jakarta, Indonesia">
+    </option><option value="Paris, France">
+    </option><option value="Tokyo, Japan">
+    </option><option value="Amsterdam, Netherlands">
+    </option><option value="Toronto, Canada">
+    </option><option value="Mikonos, Greece">
+    </option><option value="Wellington, New Zealand">
+    </option><option value="St. Petersburg, Russia">
+    </option><option value="Marrakesh, Morocco">
+    </option><option value="Manila, Philippines">
+    </option><option value="Bangkok, Thailand">
+    </option><option value="Jaipur, India">
+    </option><option value="Cape Town, South Africa">
+    </option><option value="Quito, Ecuador">
+    </option><option value="Miami, Florida">
+    </option><option value="Tulum, Mexico">
+    </option><option value="Rome, Italy">
+    </option><option value="Copenhagen, Denmark">
+    </option><option value="Vilnius, Lithuania">
+    </option><option value="New York, New York">
+    </option><option value="London, England">
+    </option><option value="San Francisco, California">
+    </option><option value="San Juan, Puerto Rico">
+    </option><option value="Willemstad, Curaçao">
+    </option><option value="Antananarivo, Madagascar">
+    </option><option value="Colombo, Sri Lanka">
+    </option><option value="Kathmandu, Nepal">
+    </option><option value="Brussels, Belgium">
+    </option><option value="Seoul, South Korea">
+    </option><option value="Anchorage, Alaska">
+    </option><option value="Reykjavík, Iceland">
+    </option><option value="Frankfurt, Germany">
+    </option><option value="Helsinki, Finland">
+    </option><option value="Porto, Portugal">
+    </option><option value="La Isla Tortuga, Costa Rica">
+    </option><option value="Montego Bay, Jamaica">
+    </option><option value="Santo Domingo, Dominican Republic">
+    </option><option value="Nassau, The Bahamas">
+    </option><option value="Caye Caulker, Belize">
+    </option><option value="Calgary, Canada">
+    </option><option value="Hobart, Tasmania">
+    </option><option value="Victoria, Seychelles">
+    </option><option value="Zürich, Switzerland">
+    </option><option value="Dar es Salaam, Tanzania">
+    </option><option value="Castries, St Lucia">
+    </option></datalist>
+    </datalist>
     <div class="form-row">
     <div class="date-container">
     <label for="date-start">Depart</label>
-    <input type="text" class="start" id ="datepicker1">
+    <input type="text" class="start" id ="datepicker1" required>
     </div>
     <div class="date-container">
     <label for="date-end">Return</label>
-    <input type="text" class="end" id ="datepicker2">
+    <input type="text" class="end" id ="datepicker2" required>
     </div>
     </div>
     <label for="guests">Guests</label>
-    <input type="number" class="number-guests" id="guests">
+    <input type="number" class="number-guests" id="guests" required>
     <button type="submit" class="book-form-submit">Submit</button>
     </form>
     </section>
@@ -266,6 +324,74 @@ class Dom {
 
   closeModal() {
     $('body').find('.modal-opacity').remove();
+  }
+
+  displayFormDestinations(destinations) {
+
+  let query = $('.destination-input').val();
+  const placesOutput = $('#places-output');
+
+  let matches = destinations.filter(destination => {
+  const regex = new RegExp(`${query}`, 'gi');
+  return destination.destination.match(regex);
+  });
+
+  const outputHtml = matches => {
+      const html = matches.map(match => `
+        <option value="${match.destination}">
+        `).join('');
+
+        placesOutput.empty();
+        placesOutput.append(html);
+  }
+
+  outputHtml(matches);
+
+  }
+
+  submitBookTripForm() {
+    let destination = $("form").find('.destination-input').val();
+    let startDate = $("form").find('.start').val();
+    let endDate = $("form").find('.end').val();
+    let travelers = $("form").find('.number-guests').val();
+    let duration;
+
+    startDate = moment(startDate).format('YYYY/MM/DD');
+    endDate = moment(endDate).format('YYYY/MM/DD');
+
+    var durationA = moment(startDate);
+    var durationB = moment(endDate);
+    duration = durationB.diff(durationA, 'days');
+
+    return {
+      destination: destination,
+      startDate: startDate,
+      endDate: endDate,
+      travelers: travelers,
+      duration: duration
+    }
+  }
+
+  displayTripConfirmation(tripData, trips) {
+    $('.book-trip-modal').empty();
+    $('.book-trip-modal').append(`
+      <div class="form-close-container">
+      <p class="modal-close">Close</p>
+      </div>
+      <h3>You're almost there.</h3>
+      <img src="${tripData.destination.image}" alt="${tripData.destination.alt}" class="confirm-trip-image">
+      <h3>${tripData.destination.destination}</h3>
+      <div class="form-row">
+      <p>Total Cost: $${tripData.getTripCost(tripData.travelers)}</p>
+      <p>Travelers: ${tripData.travelers}</p>
+      <p>Cost per person: $${tripData.getIndividualCost(tripData.travelers)}</p>
+      </div>
+      <button type="submit" class="destination-confirmation-submit">Confirm Trip</button>
+      `)
+  }
+
+  closeTripModal() {
+    $('.modal-opacity').remove();
   }
 }
 

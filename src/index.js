@@ -18,13 +18,15 @@ let allUsers;
 let currentDate = moment().format('YYYY/MM/DD');
 let datepickerStart;
 let datepickerEnd;
+let tripData;
 
 const displayDashboard = async (userRole) => {
   let htmlString;
 
   if (userRole === 0) {
     allUsers = await FetchController.getAllUsers();
-    user = new Agent();
+    user = new Agent(trips);
+    console.log(user);
     userCredentials = 'admin';
     htmlString = dom.displayAdminDashboard(allUsers, trips, currentDate);
   } else {
@@ -48,8 +50,36 @@ const fetchDashboardData = async () => {
 };
 
 const addDatepicker = () => {
-  datepickerStart = datepicker('.start', { id: 1 });
-  datepickerEnd = datepicker('.end', { id: 1 });
+  let id = Date.now()
+  let datepickerStart = datepicker('.start', {
+  formatter: (input, date, instance) => {
+    const value = date.toLocaleDateString()
+    input.value = value // => '1/1/2099'
+  }
+});
+  let datepickerEnd = datepicker('.end', {
+  formatter: (input, date, instance) => {
+    const value = date.toLocaleDateString()
+    input.value = value // => '1/1/2099'
+  }
+});
+}
+
+const formatDestinationFormData = (trip, user) => {
+  let id = Date.now() - Math.floor(Math.random() * Math.floor(1000));
+
+  let formattedTripData = {
+    "id": id,
+    "userID": user.id,
+    "destinationID": trip.destination,
+    "travelers": parseInt(trip.travelers),
+    "date": trip.startDate,
+    "duration": trip.duration,
+    "status": "pending",
+    "suggestedActivities": []
+  }
+
+  return new Trip(formattedTripData, destinations);
 }
 
 // Login form
@@ -68,8 +98,20 @@ $('body').on('submit', () => {
 // User view
 $('body').on('click', () => {
 
+  if ($(event.target).hasClass('destination-confirmation-submit')) {
+    FetchController.postTrip(tripData);
+    dom.closeTripModal();
+  }
+
   if ($(event.target).hasClass('book-form-submit')) {
     event.preventDefault();
+    let formSubmissionData = dom.submitBookTripForm();
+    let validCredentials = Authenticator.validateDestinationForm(formSubmissionData, destinations);
+
+    if (validCredentials) {
+      tripData = formatDestinationFormData(validCredentials, user);
+      dom.displayTripConfirmation(tripData, destinations);
+    }
   }
 
   if ($(event.target).hasClass('trip-card') &&
@@ -136,6 +178,14 @@ $('body').on('click', () => {
 
   if ($(event.target).hasClass('modal-close')) {
     dom.closeModal();
+  }
+
+})
+
+$('body').on('input', () => {
+
+  if ($(event.target).hasClass('destination-input')) {
+    dom.displayFormDestinations(destinations);
   }
 
 })
