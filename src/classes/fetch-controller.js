@@ -54,7 +54,6 @@ class FetchController {
     );
 
     let retrievedData = await response.json();
-    console.log(retrievedData);
   }
 }
 

@@ -58,6 +58,10 @@ class Dom {
     $('.grid-container').empty();
   }
 
+  clearDashboard() {
+    $('body').empty();
+  }
+
   displayRevenueView() {
     console.log('revenue');
   }

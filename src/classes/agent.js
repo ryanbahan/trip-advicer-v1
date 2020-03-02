@@ -1,5 +1,6 @@
 class Agent {
   constructor(trips) {
+    this.id = 0;
     this.trips = trips
   }
 
