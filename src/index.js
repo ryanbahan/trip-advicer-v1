@@ -144,15 +144,17 @@ $('body').on('click', () => {
 $('body').on('click', () => {
 
   if ($(event.target).hasClass('trip-approve')) {
-    let tripID = $(event.target).closest('.admin').attr('id');
+    let tripID = parseInt($(event.target).closest('.admin').attr('id'));
     let trip = trips.find(trip => trip.id === parseInt(tripID));
 
     dom.updateTripStatus('Approved', event);
-    FetchController.approveTrip(trip.id);
+    FetchController.approveTrip(tripID);
   }
 
   if ($(event.target).hasClass('trip-deny')) {
+    let tripID = parseInt($(event.target).closest('.admin').attr('id'));
     dom.updateTripStatus('Denied', event);
+    FetchController.denyTrip(tripID);
   }
 
   if ($(event.target).hasClass('trip-card') &&
