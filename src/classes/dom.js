@@ -63,18 +63,22 @@ class Dom {
   }
 
   displayPendingView(trips, date, userCredentials) {
+    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-approval-status="pending"'));
   }
 
   displayUpcomingView(trips, date, userCredentials) {
+    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="upcoming"'));
   }
 
   displayPastView(trips, date, userCredentials) {
+    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="past"'));
   }
 
   displayCurrentView(trips, date, userCredentials) {
+    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="current"'));
   }
 
