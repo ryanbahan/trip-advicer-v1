@@ -214,7 +214,7 @@ $('body').on('click', () => {
 
 //Shared admin/user functionality
 $('body').on('click', () => {
-
+  console.log(user.getTotalCommission());
   if ($(event.target).hasClass('modal-close')) {
     dom.closeModal();
   }

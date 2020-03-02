@@ -43,6 +43,9 @@ class Dom {
     </ul>
     </aside>
     <main>
+    <div class="search-container">
+    <input type="text" class="search-users" placeholder="Search users...">
+    </div>
     <div class="grid-container">`
 
     trips = trips.filter(trip => trip.destination !== undefined);

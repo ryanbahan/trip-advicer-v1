@@ -318,3 +318,21 @@ form label {
   font-weight: 600;
   cursor: pointer;
 }
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2.5%;
+}
+
+.search-users {
+  border: solid 0.5px grey;
+  border-radius: 2.5px;
+  width: 30%;
+  font-size: 18px;
+  padding: 0.5% 0 0.5% 1%;
+}
+
+.search-users::placeholder {
+  font-style: italic;
+}
