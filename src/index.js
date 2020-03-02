@@ -85,15 +85,17 @@ const formatDestinationFormData = (trip, user) => {
 
 
 // Login form
-$('body').on('submit', () => {
-  let credentials = dom.submitLoginForm();
+$('body').on('click', () => {
+  if ($(event.target).hasClass('login-submit')) {
+    let credentials = dom.submitLoginForm();
 
-  let isValid = Authenticator.validate(credentials.username, credentials.password);
-  let userRole = Authenticator.checkAdmin(credentials.username);
+    let isValid = Authenticator.validate(credentials.username, credentials.password);
+    let userRole = Authenticator.checkAdmin(credentials.username);
 
-  if (isValid) {
-    dom.hideLoginForm();
-    displayDashboard(userRole);
+    if (isValid) {
+      dom.hideLoginForm();
+      displayDashboard(userRole);
+    }
   }
 })
 
