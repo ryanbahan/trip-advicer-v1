@@ -55,6 +55,53 @@ class FetchController {
 
     let retrievedData = await response.json();
   }
+
+  static async approveTrip(tripID) {
+
+    let data = {
+      id: tripID,
+      status: "approved"
+    };
+
+    let formattedTripData = JSON.stringify(data);
+
+    let response = await fetch(
+      "https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/updateTrip",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: formattedTripData
+      }
+    );
+
+    let retrievedData = await response.json();
+    console.log(retrievedData);
+  }
+
+  static async denyTrip(tripID) {
+
+    let data = {
+      id: tripID,
+    };
+
+    let formattedTripData = JSON.stringify(data);
+
+    let response = await fetch(
+      "https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/trips",
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: formattedTripData
+      }
+    );
+
+    let retrievedData = await response.json();
+    console.log(retrievedData);
+  }
 }
 
 export default FetchController;

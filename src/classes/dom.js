@@ -226,7 +226,7 @@ class Dom {
     let imageAlt = $(event.target).find('img').attr('alt');
 
     $('body').append(`<div class="modal-opacity">
-    <section class="trip-modal" id="${trip.id}">
+    <section class="admin trip-modal" id="${trip.id}">
     <img src ="${image}" alt = "${imageAlt}" class="modal-image">
     <div class="modal-bottom">
     <h3 class="modal-title">${title}</h3>
