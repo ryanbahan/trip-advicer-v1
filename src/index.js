@@ -10,12 +10,13 @@ import Trip from './classes/trip';
 
 let dom = new Dom();
 let moment = require('moment');
+let currentDate = moment().format('YYYY/MM/DD');
+
 let trips;
 let destinations;
 let user;
 let userCredentials;
 let allUsers;
-let currentDate = moment().format('YYYY/MM/DD');
 let datepickerStart;
 let datepickerEnd;
 let tripData;
@@ -211,7 +212,7 @@ $('body').on('click', () => {
 
 //Shared admin/user functionality
 $('body').on('click', () => {
-  
+
   if ($(event.target).hasClass('modal-close')) {
     dom.closeModal();
   }
