@@ -64,6 +64,22 @@ const addDatepicker = () => {
 });
 }
 
+const formatDestinationFormData = (trip, user) => {
+  let id = Date.now() - Math.floor(Math.random() * Math.floor(1000));
+
+  let formattedTripData = {
+    "id": id,
+    "userID": user.id,
+    "destinationID": trip.destination,
+    "travelers": parseInt(trip.travelers),
+    "date": trip.startDate,
+    "duration": trip.duration,
+    "status": "pending",
+    "suggestedActivities": []
+  }
+  return formattedTripData
+}
+
 // Login form
 $('body').on('submit', () => {
   let credentials = dom.submitLoginForm();
@@ -86,7 +102,10 @@ $('body').on('click', () => {
     let validCredentials = Authenticator.validateDestinationForm(formSubmissionData, destinations);
 
     if (validCredentials) {
-      FetchController.postTrip(validCredentials, user)
+      let tripData = formatDestinationFormData(validCredentials, user);
+      console.log(tripData);
+      // console.log(new Trip(validCredentials, destinations));
+      FetchController.postTrip(tripData, user)
     }
   }
 

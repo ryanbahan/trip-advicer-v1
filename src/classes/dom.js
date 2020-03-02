@@ -350,15 +350,21 @@ class Dom {
     let startDate = $("form").find('.start').val();
     let endDate = $("form").find('.end').val();
     let travelers = $("form").find('.number-guests').val();
+    let duration;
 
     startDate = moment(startDate).format('YYYY/MM/DD');
     endDate = moment(endDate).format('YYYY/MM/DD');
+
+    var durationA = moment(startDate);
+    var durationB = moment(endDate);
+    duration = durationB.diff(durationA, 'days');
 
     return {
       destination: destination,
       startDate: startDate,
       endDate: endDate,
-      travelers: travelers
+      travelers: travelers,
+      duration: duration
     }
   }
 }
