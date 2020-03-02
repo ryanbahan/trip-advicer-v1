@@ -357,6 +357,7 @@ class Dom {
 
   submitBookTripForm() {
     let destination = $("form").find('.destination-input').val();
+    console.log(destination);
     let startDate = $("form").find('.start').val();
     let endDate = $("form").find('.end').val();
     let travelers = $("form").find('.number-guests').val();
