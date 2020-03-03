@@ -90,6 +90,7 @@ class Dom {
   }
 
   createTripCards(trips, currentDate, userRole) {
+
     return trips.map(trip => {
       let tripStart = moment().format(trip.date);
       let tripEnd = moment(trip.date, 'YYYY/MM/DD').add(trip.duration, 'days').format('YYYY/MM/DD');
@@ -170,7 +171,6 @@ class Dom {
       $('main').find(`section.trip-card`).removeClass('hidden');
 
       if (cardLabel === 'all') {
-
       } else if (cardLabel === 'pending') {
         $('section.trip-card').not(`[data-approval-status='${cardLabel}']`).addClass('hidden');
       } else {
@@ -404,6 +404,10 @@ class Dom {
 
   updateTripStatus(status, event) {
     $(event.target).parent().siblings('.trip-status').text(`Status: ${status}`);
+  }
+
+  searchUsers(input) {
+    console.log(input);
   }
 }
 

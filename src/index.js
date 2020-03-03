@@ -227,6 +227,10 @@ $('body').on('input', () => {
     dom.displayFormDestinations(destinations);
   }
 
+  if ($(event.target).hasClass('search-users')) {
+    dom.searchUsers($('.search-users').val());
+  }
+
 })
 
 fetchDashboardData();
