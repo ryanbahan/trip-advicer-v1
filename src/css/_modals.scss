@@ -1,0 +1,64 @@
+.modal-opacity {
+  @include dimensions(100%, 100%);
+  @include adjust-display(center);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $translucent-black;
+  align-items: center;
+}
+
+.book-trip-modal {
+  @include adjust-display(center);
+  @include dimensions(30%, 70vh);
+  @include border(0.25px, 5px, $translucent-black);
+  position: relative;
+  flex-direction: column;
+  padding: 0 5%;
+  min-width: 450px;
+  box-shadow: 2.5px 2.5px 5px $translucent-black;
+  background-color: #fff;
+  min-height: 450px;
+  overflow: visible;
+  h3 {
+    text-align: center;
+  }
+}
+
+.trip-modal {
+  @include border(0.25px, 5px, $translucent-black);
+  width: 35%;
+  box-shadow: 2.5px 2.5px 5px $translucent-black;
+  background-color: #fff;
+  max-height: 90vh;
+  overflow: scroll;
+  img {
+    @include dimensions(100%, 40%);
+  }
+}
+
+.modal-bottom {
+  padding: 1% 7.5%;
+}
+
+.close-container {
+  @include adjust-display(flex-end);
+  padding-right: 5%;
+}
+
+.modal-close {
+  cursor: pointer;
+  padding-bottom: 1%;
+  border-bottom: solid 1.5px grey;
+}
+
+.button-admin-container {
+  display: flex;
+  button {
+    font-size: 15px;
+    cursor: pointer;
+    align-self: center;
+    padding: 5px 15px;
+    margin-right: 2.5%;
+  }
+}
