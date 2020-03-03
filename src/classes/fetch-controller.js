@@ -52,7 +52,6 @@ class FetchController {
         body: formattedTripData
       }
     );
-
     let retrievedData = await response.json();
   }
 
@@ -77,7 +76,6 @@ class FetchController {
     );
 
     let retrievedData = await response.json();
-    console.log(retrievedData);
   }
 
   static async denyTrip(tripID) {
@@ -100,7 +98,6 @@ class FetchController {
     );
 
     let retrievedData = await response.json();
-    console.log(retrievedData);
   }
 }
 
