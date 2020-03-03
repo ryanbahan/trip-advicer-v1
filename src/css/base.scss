@@ -1,21 +1,5 @@
 @import '~js-datepicker/src/datepicker';
-
-$translucent-black: hsla(0,0%,0%, 0.15);
-
-@mixin adjust-display($justify-content) {
-	display: flex;
-	justify-content: $justify-content;
-}
-
-@mixin border($thickness, $radius, $color) {
- 	border: solid $thickness $color;
- 	border-radius: $radius;
-}
-
-@mixin dimensions($width, $height) {
-  width: $width;
-  height: $height;
-}
+@import './mixins', './variables';
 
 html {
   position: relative;
