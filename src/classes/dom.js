@@ -80,11 +80,13 @@ class Dom {
         data: {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             datasets: [{
-                label: 'My First dataset',
+                label: 'Total Revenue',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45]
-            }]
+                data: [0, 10, 5, 2, 20, 30, 45],
+                fill: false
+            }],
+
         },
 
         // Configuration options go here
@@ -102,7 +104,8 @@ class Dom {
                 label: 'My First dataset',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45]
+                data: [0, 10, 5, 2, 20, 30, 45],
+                fill: false
             }]
         },
 
@@ -121,7 +124,8 @@ class Dom {
                 label: 'My First dataset',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45]
+                data: [0, 10, 5, 2, 20, 30, 45],
+                fill: false
             }]
         },
 
@@ -140,7 +144,8 @@ class Dom {
                 label: 'My First dataset',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45]
+                data: [0, 10, 5, 2, 20, 30, 45],
+                fill: false
             }]
         },
 
