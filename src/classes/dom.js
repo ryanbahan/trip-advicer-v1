@@ -70,22 +70,18 @@ class Dom {
   }
 
   displayPendingView(trips, date, userCredentials) {
-    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-approval-status="pending"'));
   }
 
   displayUpcomingView(trips, date, userCredentials) {
-    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="upcoming"'));
   }
 
   displayPastView(trips, date, userCredentials) {
-    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="past"'));
   }
 
   displayCurrentView(trips, date, userCredentials) {
-    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="current"'));
   }
 
@@ -407,8 +403,12 @@ class Dom {
 
   searchUsers(allUsers, tripMatches, currentDate) {
     this.clearTripCards();
-    let htmlString = this.displayPendingView(tripMatches, currentDate, 'admin').join('');
+    let htmlString = this.displaySearchResults(tripMatches, currentDate, 'admin').join('');
     $('.grid-container').append(htmlString);
+  }
+
+  displaySearchResults(trips, date, userCredentials) {
+    return this.createTripCards(trips, date, userCredentials);
   }
 }
 

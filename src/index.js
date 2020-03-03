@@ -46,6 +46,7 @@ const fetchDashboardData = async () => {
   let fetchedDestinationData = await FetchController.getDestinations();
 
   trips = fetchedTripData.map(trip => new Trip(trip, fetchedDestinationData));
+  trips = trips.filter(trip => trip.destination !== undefined);
   destinations = fetchedDestinationData;
 };
 
@@ -230,6 +231,7 @@ $('body').on('input', () => {
     let string = $('.search-users').val();
     let regex =  new RegExp(`${string}`, 'gi')
     let matches = allUsers.filter(user => user.name.match(regex));
+    console.log(allUsers);
     matches = matches.map(match => {return match.id})
     let tripMatches = trips.filter(trip => matches.includes(trip.userID))
     console.log('test');
