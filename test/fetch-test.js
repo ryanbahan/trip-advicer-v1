@@ -52,21 +52,24 @@ describe('Fetch', function() {
   });
 
   it('should be able to post a trip', function() {
-      FetchController.postTrip();
+      FetchController.postTrip(trips[0]);
 
       expect(FetchController.postTrip).to.be.called(1);
+      expect(FetchController.postTrip).to.be.called.with(trips[0]);
   });
 
   it('should be able to approve a trip', function() {
-      FetchController.approveTrip();
+      FetchController.approveTrip(trips[0].id);
 
       expect(FetchController.approveTrip).to.be.called(1);
+      expect(FetchController.approveTrip).to.be.called.with(trips[0].id);
   });
 
   it('should be able to deny a trip', function() {
-      FetchController.denyTrip();
+      FetchController.denyTrip(trips[0].id);
 
       expect(FetchController.denyTrip).to.be.called(1);
+      expect(FetchController.denyTrip).to.be.called.with(trips[0].id);
   });
 
   afterEach(function () {
