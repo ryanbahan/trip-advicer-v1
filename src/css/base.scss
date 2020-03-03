@@ -91,9 +91,12 @@ hr {
     @include dimensions(100%, 60%);
     border-radius: 2.5%;
   }
+  > * {
+    pointer-events: none;
+  }
 }
 
-.top-row {
+.trip-row {
   @include adjust-display(space-between);
   align-items: baseline;
   padding: 0 5%;
@@ -103,17 +106,8 @@ hr {
   max-width: 50%;
 }
 
-.bottom-row {
-  @include adjust-display(space-between);
-  padding: 0 5%;
-}
-
 .trip-status {
   font-style: italic;
-}
-
-.trip-card > * {
-  pointer-events: none;
 }
 
 .trip-duration,
@@ -137,10 +131,9 @@ hr {
     @include dimensions(100%, 60%);
     border-radius: 2.5%;
   }
-}
-
-.book-trip-card > * {
-  pointer-events: none;
+  > * {
+    pointer-events: none;
+  }
 }
 
 .options-top {
@@ -157,10 +150,9 @@ hr {
     background-color: #fff;
     cursor: pointer;
   }
-}
-
-.options-buttons > * {
-  margin: 5px;
+  > * {
+    margin: 5px;
+  }
 }
 
 .total-spent {
@@ -225,6 +217,33 @@ hr {
   }
 }
 
+.trip-modal {
+  @include border(0.25px, 5px, $translucent-black);
+  width: 35%;
+  box-shadow: 2.5px 2.5px 5px $translucent-black;
+  background-color: #fff;
+  max-height: 90vh;
+  overflow: scroll;
+  img {
+    @include dimensions(100%, 40%);
+  }
+}
+
+.modal-bottom {
+  padding: 1% 7.5%;
+}
+
+.close-container {
+  @include adjust-display(flex-end);
+  padding-right: 5%;
+}
+
+.modal-close {
+  cursor: pointer;
+  padding-bottom: 1%;
+  border-bottom: solid 1.5px grey;
+}
+
 .form-close-container {
   position: absolute;
   top: 0;
@@ -264,33 +283,6 @@ hr {
   input {
     width: 100%;
   }
-}
-
-.trip-modal {
-  @include border(0.25px, 5px, $translucent-black);
-  width: 35%;
-  box-shadow: 2.5px 2.5px 5px $translucent-black;
-  background-color: #fff;
-  max-height: 90vh;
-  overflow: scroll;
-  img {
-    @include dimensions(100%, 40%);
-  }
-}
-
-.modal-bottom {
-  padding: 1% 7.5%;
-}
-
-.close-container {
-  @include adjust-display(flex-end);
-  padding-right: 5%;
-}
-
-.modal-close {
-  cursor: pointer;
-  padding-bottom: 1%;
-  border-bottom: solid 1.5px grey;
 }
 
 .confirm-trip-image {
