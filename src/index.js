@@ -182,7 +182,7 @@ $('body').on('click', () => {
   }
 
   if ($(event.target).hasClass('revenue-admin-filter-li')) {
-    dom.clearGrid();
+    dom.clearTripCards();
     let htmlString = dom.displayRevenueView();
     $('main').append(htmlString);
     dom.populateCharts();

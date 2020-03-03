@@ -66,10 +66,6 @@ class Dom {
     $('body').empty();
   }
 
-  clearGrid() {
-    $('main').empty();
-  }
-
   populateCharts() {
     const chartACanvas = document.getElementById('chartA').getContext('2d');
     const chartBCanvas = document.getElementById('chartB').getContext('2d');
