@@ -228,7 +228,10 @@ $('body').on('input', () => {
   }
 
   if ($(event.target).hasClass('search-users')) {
-    dom.searchUsers($('.search-users').val());
+    let string = $('.search-users').val();
+    let regex =  new RegExp(`${string}`, 'gi')
+    let matches = allUsers.filter(user => user.name.match(regex));
+    dom.searchUsers(matches);
   }
 
 })
