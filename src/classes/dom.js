@@ -70,32 +70,29 @@ class Dom {
   }
 
   displayPendingView(trips, date, userCredentials) {
-    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-approval-status="pending"'));
   }
 
   displayUpcomingView(trips, date, userCredentials) {
-    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="upcoming"'));
   }
 
   displayPastView(trips, date, userCredentials) {
-    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="past"'));
   }
 
   displayCurrentView(trips, date, userCredentials) {
-    trips = trips.filter(trip => trip.destination !== undefined);
     return this.createTripCards(trips, date, userCredentials).filter(card => card.includes('data-date-status="current"'));
   }
 
   createTripCards(trips, currentDate, userRole) {
+
     return trips.map(trip => {
       let tripStart = moment().format(trip.date);
       let tripEnd = moment(trip.date, 'YYYY/MM/DD').add(trip.duration, 'days').format('YYYY/MM/DD');
       let tripDateStatus = this.getDateStatus(tripStart, tripEnd, currentDate);
 
-      let html = `<section class="${userRole} trip-card" id="${trip.id}" data-date-status="${tripDateStatus}" data-approval-status="${trip.status}">
+      let html = `<section class="${userRole} trip-card" id="${trip.id}" data-date-status="${tripDateStatus}" data-approval-status="${trip.status}" data-userid="${trip.userID}">
           <img src="${trip.destination.image}" alt="${trip.destination.alt}" class="card-image">
           <div class="card-bottom">
           <div class="trip-row">
@@ -170,7 +167,6 @@ class Dom {
       $('main').find(`section.trip-card`).removeClass('hidden');
 
       if (cardLabel === 'all') {
-
       } else if (cardLabel === 'pending') {
         $('section.trip-card').not(`[data-approval-status='${cardLabel}']`).addClass('hidden');
       } else {
@@ -358,7 +354,6 @@ class Dom {
 
   submitBookTripForm() {
     let destination = $("form").find('.destination-input').val();
-    console.log(destination);
     let startDate = $("form").find('.start').val();
     let endDate = $("form").find('.end').val();
     let travelers = $("form").find('.number-guests').val();
@@ -404,6 +399,16 @@ class Dom {
 
   updateTripStatus(status, event) {
     $(event.target).parent().siblings('.trip-status').text(`Status: ${status}`);
+  }
+
+  searchUsers(allUsers, tripMatches, currentDate) {
+    this.clearTripCards();
+    let htmlString = this.displaySearchResults(tripMatches, currentDate, 'admin').join('');
+    $('.grid-container').append(htmlString);
+  }
+
+  displaySearchResults(trips, date, userCredentials) {
+    return this.createTripCards(trips, date, userCredentials);
   }
 }
 
