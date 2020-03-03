@@ -182,9 +182,10 @@ $('body').on('click', () => {
   }
 
   if ($(event.target).hasClass('revenue-admin-filter-li')) {
-    dom.clearTripCards();
+    dom.clearGrid();
     let htmlString = dom.displayRevenueView();
-    $('.grid-container').append(htmlString);
+    $('main').append(htmlString);
+    dom.populateCharts();
   }
 
   if ($(event.target).hasClass('pending-admin-filter-li')) {

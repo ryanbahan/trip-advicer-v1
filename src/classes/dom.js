@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import Chart from 'chart.js';
 import datepicker from 'js-datepicker';
 let moment = require('moment');
 
@@ -65,8 +66,101 @@ class Dom {
     $('body').empty();
   }
 
+  clearGrid() {
+    $('main').empty();
+  }
+
+  populateCharts() {
+    const chartACanvas = document.getElementById('chartA').getContext('2d');
+    const chartBCanvas = document.getElementById('chartB').getContext('2d');
+    const chartCCanvas = document.getElementById('chartC').getContext('2d');
+    const chartDCanvas = document.getElementById('chartD').getContext('2d');
+
+    const chartA = new Chart(chartACanvas, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45]
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+
+    const chartB = new Chart(chartBCanvas, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45]
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+
+    const chartC = new Chart(chartCCanvas, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45]
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+
+    const chartD = new Chart(chartDCanvas, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45]
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+  }
+
   displayRevenueView() {
-    console.log('revenue');
+    return `
+    <div>
+      <canvas id="chartA"></canvas>
+      <canvas id="chartB"></canvas>
+      <canvas id="chartC"></canvas>
+      <canvas id="chartD"></canvas>
+    </div>`
   }
 
   displayPendingView(trips, date, userCredentials) {
