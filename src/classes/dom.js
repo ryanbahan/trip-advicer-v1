@@ -96,7 +96,7 @@ class Dom {
       let tripEnd = moment(trip.date, 'YYYY/MM/DD').add(trip.duration, 'days').format('YYYY/MM/DD');
       let tripDateStatus = this.getDateStatus(tripStart, tripEnd, currentDate);
 
-      let html = `<section class="${userRole} trip-card" id="${trip.id}" data-date-status="${tripDateStatus}" data-approval-status="${trip.status}">
+      let html = `<section class="${userRole} trip-card" id="${trip.id}" data-date-status="${tripDateStatus}" data-approval-status="${trip.status}" data-userid="${trip.userID}">
           <img src="${trip.destination.image}" alt="${trip.destination.alt}" class="card-image">
           <div class="card-bottom">
           <div class="trip-row">
@@ -405,8 +405,10 @@ class Dom {
     $(event.target).parent().siblings('.trip-status').text(`Status: ${status}`);
   }
 
-  searchUsers(matches) {
-    console.log(matches);
+  searchUsers(allUsers, tripMatches, currentDate) {
+    this.clearTripCards();
+    let htmlString = this.displayPendingView(tripMatches, currentDate, 'admin').join('');
+    $('.grid-container').append(htmlString);
   }
 }
 

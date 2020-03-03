@@ -222,7 +222,6 @@ $('body').on('click', () => {
 })
 
 $('body').on('input', () => {
-
   if ($(event.target).hasClass('destination-input')) {
     dom.displayFormDestinations(destinations);
   }
@@ -231,7 +230,10 @@ $('body').on('input', () => {
     let string = $('.search-users').val();
     let regex =  new RegExp(`${string}`, 'gi')
     let matches = allUsers.filter(user => user.name.match(regex));
-    dom.searchUsers(matches);
+    matches = matches.map(match => {return match.id})
+    let tripMatches = trips.filter(trip => matches.includes(trip.userID))
+    console.log('test');
+    dom.searchUsers(allUsers, tripMatches, currentDate)
   }
 
 })
