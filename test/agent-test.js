@@ -20,7 +20,7 @@ describe('Agent', function() {
   });
 
   it('should be able to calculate total commission revenue', function() {
-    expect(agent.getTotalCommission()).to.equal('$99,313.50');
+    expect(agent.getTotalCommission()).to.equal('$90,285.00');
   });
 
 });
