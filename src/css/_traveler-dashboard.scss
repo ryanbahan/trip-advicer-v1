@@ -1,0 +1,22 @@
+.options-top {
+  padding: 0 5%;
+  display: flex;
+  align-items: baseline;
+}
+
+.options-buttons {
+  display: flex;
+  padding: 0 5%;
+  margin-bottom: 2.5%;
+  button {
+    background-color: #fff;
+    cursor: pointer;
+  }
+  > * {
+    margin: 5px;
+  }
+}
+
+.total-spent {
+  padding-left: 5%;
+}

@@ -43,6 +43,9 @@ class Dom {
     </ul>
     </aside>
     <main>
+    <div class="search-container">
+    <input type="text" class="search-users" placeholder="Search users...">
+    </div>
     <div class="grid-container">`
 
     trips = trips.filter(trip => trip.destination !== undefined);
@@ -95,11 +98,11 @@ class Dom {
       let html = `<section class="${userRole} trip-card" id="${trip.id}" data-date-status="${tripDateStatus}" data-approval-status="${trip.status}">
           <img src="${trip.destination.image}" alt="${trip.destination.alt}" class="card-image">
           <div class="card-bottom">
-          <div class="top-row">
+          <div class="trip-row">
           <h3 class="trip-title">${trip.destination.destination}</h3>
           <p class="trip-status">${trip.status.charAt(0).toUpperCase() + trip.status.slice(1)}</p>
           </div>
-          <div class="bottom-row">
+          <div class="trip-row">
           <p class="trip-duration">${tripStart} - ${tripEnd}</p>
           <p class="trip-cost">$${trip.getTripCost(trip.travelers)}</p>
           </div>

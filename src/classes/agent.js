@@ -12,7 +12,7 @@ class Agent {
     });
 
     cost = cost.reduce((num, tripCost) => num += tripCost);
-    cost = cost * 0.1;
+    cost = cost * (1/11);
 
     return cost.toLocaleString("en-US", { style: "currency", currency: "USD" });
   }
