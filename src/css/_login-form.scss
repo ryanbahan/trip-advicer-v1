@@ -4,6 +4,7 @@
   @include adjust-display(space-around);
   align-items: center;
   box-shadow: 2.5px 2.5px 5px $translucent-black;
+  min-width: 400px;
 }
 
 .input-container {
@@ -23,6 +24,7 @@
     font-size: 18px;
     padding: 2.5%;
     cursor: pointer;
+    min-width: 90px;
   }
 }
 

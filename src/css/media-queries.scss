@@ -1,9 +1,14 @@
 // small screen size (sm)
-@media (max-width: 801px) {
+@media (max-width: 750px) {
   .admin-nav {
     display: none;
   }
-}
-// medium screen size (md)
-@media (max-width: 992px) {
+  .trip-modal {
+    min-height: 100vh;
+    min-width: 100vw;
+  }
+  .book-trip-modal {
+    min-height: 80vh;
+    min-width: 80vw;
+  }
 }
