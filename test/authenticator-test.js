@@ -58,4 +58,14 @@ describe('Authenticator', function() {
     expect(Authenticator.checkAdmin('agents')).to.equal(false);
   });
 
+  it('should be able to check dates', function() {
+    // Happy paths
+    expect(Authenticator.checkFormDates('11/11/2019', '11/20/2019')).to.equal(true);
+    expect(Authenticator.checkFormDates('01/20/2020', '11/30/2020')).to.equal(true);
+
+    // Sad paths
+    expect(Authenticator.checkFormDates('01/20/2021', '11/30/2020')).to.equal(undefined);
+    expect(Authenticator.checkFormDates('03/14/2008', '01/30/2007')).to.equal(undefined);
+  });
+
 });
