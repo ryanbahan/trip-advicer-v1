@@ -1,15 +1,17 @@
 # TRIP ADVICER
 
+Trip Advicer is a single-page application dedicated to providing the features of a travel-booking agency with exceptional consderation to UI/UX, dynamic page views, compelling form layouts, and OOP-compliant application architecture.
+
 ## Getting Started
 
 You can visit the GitHub pages link **[here](https://ryanbahan.github.io/trip-advicer-v1/)** and use the login credentials below to view either the admin or user dashboard.
 
-Admin view:
-Username: agent
+Admin view:<br />
+Username: agent <br />
 Password: travel2020
 
-User view: 
-Username: traveler1 - traveler50
+User view: <br />
+Username: traveler1 - traveler50 <br />
 Password: travel2020
 
 ## Project Goals
