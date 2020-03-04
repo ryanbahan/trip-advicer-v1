@@ -25,7 +25,7 @@ class Agent {
 
     return this.trips.reduce((obj, trip) => {
       trip.month = moment(trip.date).month(trip.date).format('MMM');
-      let cost = trip.getTripCost(trip.travelers);
+      let cost = trip.getTripCost(trip.travelers) * 1/11;
       obj[trip.month] += parseInt(cost);
       return obj;
     }, {
