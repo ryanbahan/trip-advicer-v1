@@ -52,12 +52,14 @@ const fetchDashboardData = async () => {
 
 const addDatepicker = () => {
   let id = Date.now()
+
   let datepickerStart = datepicker('.start', {
   formatter: (input, date, instance) => {
     const value = date.toLocaleDateString()
     input.value = value // => '1/1/2099'
   }
 });
+
   let datepickerEnd = datepicker('.end', {
   formatter: (input, date, instance) => {
     const value = date.toLocaleDateString()
@@ -102,6 +104,7 @@ $('body').on('click', () => {
   }
 })
 
+// Destination submission form
 $('body').on('click', async () => {
 
   if ($(event.target).hasClass('destination-confirmation-submit')) {
@@ -114,7 +117,7 @@ $('body').on('click', async () => {
 
 })
 
-// User view
+// User dashboard options
 $('body').on('click', () => {
 
   if ($(event.target).hasClass('book-form-submit')) {
@@ -147,8 +150,7 @@ $('body').on('click', () => {
 
 })
 
-//Admin view
-
+//Async Admin dashboard options
 $('body').on('click', async () => {
 
   if ($(event.target).hasClass('trip-approve')) {
@@ -177,6 +179,7 @@ $('body').on('click', async () => {
 
 })
 
+// Admin dashboard options
 $('body').on('click', () => {
 
   if ($(event.target).hasClass('trip-card') &&
@@ -226,6 +229,7 @@ $('body').on('click', () => {
 
 })
 
+//Search options
 $('body').on('input', () => {
   if ($(event.target).hasClass('destination-input')) {
     dom.displayFormDestinations(destinations);
