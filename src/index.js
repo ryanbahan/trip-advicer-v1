@@ -96,6 +96,8 @@ $('body').on('click', () => {
     if (isValid) {
       dom.hideLoginForm();
       displayDashboard(userRole);
+    } else {
+      alert('Please enter a valid username and password.')
     }
   }
 })
@@ -123,6 +125,8 @@ $('body').on('click', () => {
     if (validCredentials) {
       tripData = formatDestinationFormData(validCredentials, user);
       dom.displayTripConfirmation(tripData, destinations);
+    } else {
+      alert('Please enter a valid location, date range, and number of guests.')
     }
   }
 
@@ -231,10 +235,8 @@ $('body').on('input', () => {
     let string = $('.search-users').val();
     let regex =  new RegExp(`${string}`, 'gi')
     let matches = allUsers.filter(user => user.name.match(regex));
-    console.log(allUsers);
     matches = matches.map(match => {return match.id})
     let tripMatches = trips.filter(trip => matches.includes(trip.userID))
-    console.log('test');
     dom.searchUsers(allUsers, tripMatches, currentDate)
   }
 
