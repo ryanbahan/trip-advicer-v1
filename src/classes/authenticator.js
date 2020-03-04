@@ -46,9 +46,9 @@ class Authenticator {
       destination.destination.includes(formSubmissionData.destination));
     let validGroupNumber = parseInt(formSubmissionData.travelers);
 
-    formSubmissionData.destination = validDestination.id;
 
     if (validDates && validDestination && validGroupNumber) {
+      formSubmissionData.destination = validDestination.id;
       return formSubmissionData;
     } else {
       return false;
