@@ -81,8 +81,8 @@ class Dom {
             labels: Object.keys(data),
             datasets: [{
                 label: 'Total Revenue',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#FF6868',
+                borderColor: '#FF6868',
                 data: Object.values(data),
                 fill: false
             }],
@@ -168,9 +168,6 @@ class Dom {
     return `
     <div>
       <canvas id="chartA"></canvas>
-      <canvas id="chartB"></canvas>
-      <canvas id="chartC"></canvas>
-      <canvas id="chartD"></canvas>
     </div>`
   }
 
