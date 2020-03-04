@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import Chart from 'chart.js';
 import datepicker from 'js-datepicker';
 let moment = require('moment');
 
@@ -65,8 +66,109 @@ class Dom {
     $('body').empty();
   }
 
+  populateCharts(data) {
+    const chartACanvas = document.getElementById('chartA').getContext('2d');
+    // const chartBCanvas = document.getElementById('chartB').getContext('2d');
+    // const chartCCanvas = document.getElementById('chartC').getContext('2d');
+    // const chartDCanvas = document.getElementById('chartD').getContext('2d');
+
+    const chartA = new Chart(chartACanvas, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: Object.keys(data),
+            datasets: [{
+                label: 'Total Revenue',
+                backgroundColor: '#FF6868',
+                borderColor: '#FF6868',
+                data: Object.values(data),
+                fill: false
+            }],
+
+        },
+
+        // Configuration options go here
+        options: {
+         scales: {
+           yAxes: [{
+             ticks: {
+               callback: function(value, index, values) {
+                 return value.toLocaleString("en-US",{style:"currency", currency:"USD"});
+               }
+             }
+           }]
+         }
+       }
+    });
+
+    // const chartB = new Chart(chartBCanvas, {
+    //     // The type of chart we want to create
+    //     type: 'line',
+    //
+    //     // The data for our dataset
+    //     data: {
+    //         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    //         datasets: [{
+    //             label: 'My First dataset',
+    //             backgroundColor: 'rgb(255, 99, 132)',
+    //             borderColor: 'rgb(255, 99, 132)',
+    //             data: [0, 10, 5, 2, 20, 30, 45],
+    //             fill: false
+    //         }]
+    //     },
+    //
+    //     // Configuration options go here
+    //     options: {}
+    // });
+    //
+    // const chartC = new Chart(chartCCanvas, {
+    //     // The type of chart we want to create
+    //     type: 'line',
+    //
+    //     // The data for our dataset
+    //     data: {
+    //         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    //         datasets: [{
+    //             label: 'My First dataset',
+    //             backgroundColor: 'rgb(255, 99, 132)',
+    //             borderColor: 'rgb(255, 99, 132)',
+    //             data: [0, 10, 5, 2, 20, 30, 45],
+    //             fill: false
+    //         }]
+    //     },
+    //
+    //     // Configuration options go here
+    //     options: {}
+    // });
+    //
+    // const chartD = new Chart(chartDCanvas, {
+    //     // The type of chart we want to create
+    //     type: 'line',
+    //
+    //     // The data for our dataset
+    //     data: {
+    //         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    //         datasets: [{
+    //             label: 'My First dataset',
+    //             backgroundColor: 'rgb(255, 99, 132)',
+    //             borderColor: 'rgb(255, 99, 132)',
+    //             data: [0, 10, 5, 2, 20, 30, 45],
+    //             fill: false
+    //         }]
+    //     },
+    //
+    //     // Configuration options go here
+    //     options: {}
+    // });
+  }
+
   displayRevenueView() {
-    console.log('revenue');
+    return `
+    <div>
+      <canvas id="chartA"></canvas>
+    </div>`
   }
 
   displayPendingView(trips, date, userCredentials) {
