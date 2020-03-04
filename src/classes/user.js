@@ -1,6 +1,7 @@
 class User {
-  constructor() {
-    this.trips = []
+  constructor(user, trips) {
+    this.id = user.id || 0;
+    this.trips = trips || []
   }
 }
 

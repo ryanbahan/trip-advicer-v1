@@ -26,7 +26,7 @@ const displayDashboard = async (userRole) => {
 
   if (userRole === 0) {
     allUsers = await FetchController.getAllUsers();
-    user = new Agent(trips);
+    user = new Agent(0, trips);
     userCredentials = 'admin';
     htmlString = dom.displayAdminDashboard(allUsers, trips, currentDate);
   } else {
@@ -231,6 +231,7 @@ $('body').on('click', () => {
 
 //Search options
 $('body').on('input', () => {
+  console.log(user);
   if ($(event.target).hasClass('destination-input')) {
     dom.displayFormDestinations(destinations);
   }

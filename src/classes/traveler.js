@@ -1,9 +1,10 @@
-class Traveler {
+import User from './user';
+
+class Traveler extends User {
   constructor(traveler) {
-    this.id = traveler.id;
+    super(traveler);
     this.name = traveler.name;
     this.travelerType = traveler.travelerType;
-    this.trips = []
   }
 
   getTotalTripCost() {
