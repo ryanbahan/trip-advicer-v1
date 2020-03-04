@@ -237,19 +237,17 @@ class Dom {
     $('body').append(`<div class="form-container">
           <div>
             <form class="login-form">
-              <div>
+            <div class="input-container">
                 <label for="username">
                   Username
                 </label>
                 <input id="username" type="text" placeholder="Username">
-              </div>
-              <div class="mb-6">
                 <label for="password">
                   Password
                 </label>
                 <input id="password" type="password" placeholder="******************">
               </div>
-              <div>
+              <div class="login-button-container">
                 <button class="login-submit">
                   Sign In
                 </button>
@@ -258,7 +256,7 @@ class Dom {
                 </a>
               </div>
             </form>
-            <p>
+            <p class="login-bottom-copy">
               &copy;2020 TripAdvicer. All rights reserved.
             </p>
           </div>

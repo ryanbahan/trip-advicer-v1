@@ -1,0 +1,32 @@
+.login-form {
+  @include dimensions(30vw, 40vh);
+  @include border(0.5px, 2.5%, $translucent-black);
+  @include adjust-display(space-around);
+  align-items: center;
+  box-shadow: 2.5px 2.5px 5px $translucent-black;
+}
+
+.input-container {
+  @include dimensions(70%, min-content);
+  @include adjust-display(center);
+  flex-direction: column;
+  input {
+    font-size: 18px;
+  }
+}
+
+.login-button-container {
+  @include dimensions(70%, min-content);
+  @include adjust-display(space-between);
+  align-items: center;
+  button {
+    font-size: 18px;
+    padding: 2.5%;
+    cursor: pointer;
+  }
+}
+
+.login-bottom-copy {
+  font-size: 10px;
+  font-style: italic;
+}

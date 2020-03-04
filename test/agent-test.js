@@ -23,9 +23,4 @@ describe('Agent', function() {
     expect(agent.getTotalCommission()).to.equal('$90,285.00');
   });
 
-  it('should be able to organize trips by month', function() {
-    console.log(agent.getTripsByMonth());
-    expect(agent.getTripsByMonth()).to.equal();
-  });
-
 });
