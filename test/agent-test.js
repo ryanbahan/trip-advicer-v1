@@ -12,7 +12,7 @@ describe('Agent', function() {
 
   beforeEach("instantiate variables", function() {
     trips = tripData.trips.map(trip => new Trip(trip, destinationData.destinations));
-    agent = new Agent(trips);
+    agent = new Agent(0, trips);
   });
 
   it('should be an instance of Agent', function() {
