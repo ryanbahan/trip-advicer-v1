@@ -66,11 +66,13 @@ class Dom {
     $('body').empty();
   }
 
-  populateCharts() {
+  populateCharts(data) {
     const chartACanvas = document.getElementById('chartA').getContext('2d');
     const chartBCanvas = document.getElementById('chartB').getContext('2d');
     const chartCCanvas = document.getElementById('chartC').getContext('2d');
     const chartDCanvas = document.getElementById('chartD').getContext('2d');
+
+    console.log(data);
 
     const chartA = new Chart(chartACanvas, {
         // The type of chart we want to create

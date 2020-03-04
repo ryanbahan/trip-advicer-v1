@@ -185,7 +185,7 @@ $('body').on('click', () => {
     dom.clearTripCards();
     let htmlString = dom.displayRevenueView();
     $('main').append(htmlString);
-    dom.populateCharts();
+    dom.populateCharts(user.getTripsByMonth());
   }
 
   if ($(event.target).hasClass('pending-admin-filter-li')) {
@@ -216,7 +216,6 @@ $('body').on('click', () => {
 
 //Shared admin/user functionality
 $('body').on('click', () => {
-
   if ($(event.target).hasClass('modal-close')) {
     dom.closeModal();
   }

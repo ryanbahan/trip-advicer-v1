@@ -1,3 +1,5 @@
+let moment = require('moment');
+
 class Agent {
   constructor(trips) {
     this.id = 0;
@@ -16,6 +18,33 @@ class Agent {
 
     return cost.toLocaleString("en-US", { style: "currency", currency: "USD" });
   }
+
+
+
+  getTripsByMonth() {
+
+    return this.trips.reduce((obj, trip) => {
+      trip.month = moment(trip.date).month(trip.date).format('MMM');
+      let cost = trip.getTripCost(trip.travelers);
+      obj[trip.month].push(cost);
+      return obj;
+    }, {
+      Jan: [],
+      Feb: [],
+      Mar: [],
+      Apr: [],
+      May: [],
+      Jun: [],
+      Jul: [],
+      Aug: [],
+      Sep: [],
+      Oct: [],
+      Nov: [],
+      Dec: []
+    })
+  }
+
+
 }
 
 export default Agent;
