@@ -1,9 +1,9 @@
 let moment = require('moment');
+import User from './user';
 
-class Agent {
-  constructor(trips) {
-    this.id = 0;
-    this.trips = trips
+class Agent extends User {
+  constructor(id, trips) {
+    super(id, trips);
   }
 
   getTotalCommission() {
